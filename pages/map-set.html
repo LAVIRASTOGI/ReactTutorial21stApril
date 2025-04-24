@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map and Set - JavaScript Concepts</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="concept-page">
+    <header>
+      <h1>JavaScript Concepts</h1>
+      <p>A tutorial for learning JavaScript core concepts</p>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+      </nav>
+
+      <main class="content">
+        <h2>Map and Set in JavaScript</h2>
+
+        <section>
+          <h3>Introduction</h3>
+          <p>
+            ES6 introduced two new data structures to JavaScript:
+            <code>Map</code> and <code>Set</code>. These collections provide
+            more efficient and flexible alternatives to plain objects and arrays
+            for certain use cases.
+          </p>
+        </section>
+
+        <section>
+          <h3>Map</h3>
+          <p>
+            A <code>Map</code> is a collection of key-value pairs where both
+            keys and values can be of any type. Unlike objects, Maps:
+          </p>
+          <ul>
+            <li>
+              Allow any data type as keys (objects, functions, primitives)
+            </li>
+            <li>Maintain insertion order when iterating</li>
+            <li>Have a built-in size property</li>
+            <li>Are designed for frequent additions and removals</li>
+          </ul>
+
+          <h4>Creating a Map</h4>
+          <pre><code>// Empty Map
+const emptyMap = new Map();
+
+// Map from array of key-value pairs
+const userMap = new Map([
+  ['name', 'John'],
+  ['age', 30],
+  [42, 'answer'],
+  [{ id: 1 }, 'object as key']
+]);</code></pre>
+
+          <h4>Basic Map Operations</h4>
+          <pre><code>// Get the size
+console.log(userMap.size); // 4
+
+// Set a value
+userMap.set('email', 'john@example.com');
+
+// Get a value
+console.log(userMap.get('name')); // 'John'
+
+// Check if a key exists
+console.log(userMap.has('age')); // true
+console.log(userMap.has('phone')); // false
+
+// Delete an entry
+userMap.delete('age');
+console.log(userMap.size); // 3
+
+// Clear the map
+userMap.clear();
+console.log(userMap.size); // 0</code></pre>
+        </section>
+
+        <section>
+          <h3>Iterating Over a Map</h3>
+          <p>
+            Maps are iterable and provide several methods for accessing their
+            contents:
+          </p>
+          <pre><code>const fruitMap = new Map([
+  ['apple', 5],
+  ['banana', 10],
+  ['orange', 7]
+]);
+
+// Iterate over keys
+for (const key of fruitMap.keys()) {
+  console.log(key); // 'apple', 'banana', 'orange'
+}
+
+// Iterate over values
+for (const value of fruitMap.values()) {
+  console.log(value); // 5, 10, 7
+}
+
+// Iterate over entries
+for (const [key, value] of fruitMap.entries()) {
+  console.log(`${key}: ${value}`); // 'apple: 5', 'banana: 10', 'orange: 7'
+}
+
+// Using forEach
+fruitMap.forEach((value, key) => {
+  console.log(`${key}: ${value}`);
+});</code></pre>
+        </section>
+
+        <section>
+          <h3>Map vs Object</h3>
+          <p>
+            While objects and Maps both store key-value pairs, they have
+            important differences:
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Map</th>
+                <th>Object</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Key types</td>
+                <td>Any value (primitive or object)</td>
+                <td>Strings, Symbols, or numbers (converted to strings)</td>
+              </tr>
+              <tr>
+                <td>Key order</td>
+                <td>Preserves insertion order</td>
+                <td>Not guaranteed in older JS engines</td>
+              </tr>
+              <tr>
+                <td>Size</td>
+                <td>Available via size property</td>
+                <td>Requires manual counting</td>
+              </tr>
+              <tr>
+                <td>Iteration</td>
+                <td>Directly iterable</td>
+                <td>Requires Object.entries() or similar</td>
+              </tr>
+              <tr>
+                <td>Performance</td>
+                <td>Better for frequent additions/removals</td>
+                <td>Better for static access</td>
+              </tr>
+              <tr>
+                <td>Default keys</td>
+                <td>No default keys</td>
+                <td>Has prototype keys</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>When to Use Map</h4>
+          <ul>
+            <li>When keys are not strings or symbols</li>
+            <li>When you need to maintain key order</li>
+            <li>When you frequently add and remove key-value pairs</li>
+            <li>When you need to know the size easily</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Set</h3>
+          <p>
+            A <code>Set</code> is a collection of unique values of any type. It
+            provides an efficient way to store values without duplicates.
+          </p>
+
+          <h4>Creating a Set</h4>
+          <pre><code>// Empty Set
+const emptySet = new Set();
+
+// Set from an array (duplicates are automatically removed)
+const numberSet = new Set([1, 2, 3, 2, 1]);
+console.log(numberSet.size); // 3 (duplicates removed)</code></pre>
+
+          <h4>Basic Set Operations</h4>
+          <pre><code>// Add values
+const colors = new Set();
+colors.add('red');
+colors.add('green');
+colors.add('blue');
+colors.add('red'); // Duplicate, won't be added
+console.log(colors.size); // 3
+
+// Check if a value exists
+console.log(colors.has('green')); // true
+console.log(colors.has('yellow')); // false
+
+// Delete a value
+colors.delete('green');
+console.log(colors.size); // 2
+
+// Clear the set
+colors.clear();
+console.log(colors.size); // 0</code></pre>
+        </section>
+
+        <section>
+          <h3>Iterating Over a Set</h3>
+          <p>
+            Sets are iterable and provide similar methods to Maps for accessing
+            their contents:
+          </p>
+          <pre><code>const fruits = new Set(['apple', 'banana', 'orange']);
+
+// Iterate over values
+for (const fruit of fruits) {
+  console.log(fruit); // 'apple', 'banana', 'orange'
+}
+
+// Using forEach
+fruits.forEach(fruit => {
+  console.log(fruit); // 'apple', 'banana', 'orange'
+});</code></pre>
+        </section>
+
+        <section>
+          <h3>Set vs Array</h3>
+          <p>Sets offer several advantages over arrays in certain scenarios:</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Set</th>
+                <th>Array</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Uniqueness</td>
+                <td>Enforces unique values</td>
+                <td>Can contain duplicates</td>
+              </tr>
+              <tr>
+                <td>Lookups</td>
+                <td>Faster (O(1) for has())</td>
+                <td>Slower (O(n) for includes())</td>
+              </tr>
+              <tr>
+                <td>Order</td>
+                <td>Maintains insertion order</td>
+                <td>Index-based, ordered</td>
+              </tr>
+              <tr>
+                <td>Methods</td>
+                <td>add(), delete(), has(), size</td>
+                <td>push(), splice(), includes(), length</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>When to Use Set</h4>
+          <ul>
+            <li>When you need to store unique values</li>
+            <li>When you frequently check for value existence</li>
+            <li>When you don't need index access</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Practical Use Cases</h3>
+
+          <h4>Removing Duplicates from an Array</h4>
+          <pre><code>const numbers = [1, 2, 3, 2, 4, 1, 5, 5];
+const uniqueNumbers = [...new Set(numbers)];
+console.log(uniqueNumbers); // [1, 2, 3, 4, 5]</code></pre>
+
+          <h4>Using Objects as Map Keys</h4>
+          <pre><code>const usersByObject = new Map();
+
+const user1 = { id: 1, name: 'Alice' };
+const user2 = { id: 2, name: 'Bob' };
+
+usersByObject.set(user1, { role: 'admin', lastLogin: '2023-01-01' });
+usersByObject.set(user2, { role: 'user', lastLogin: '2023-01-02' });
+
+console.log(usersByObject.get(user1)); // { role: 'admin', lastLogin: '2023-01-01' }</code></pre>
+
+          <h4>Tracking Unique Visitors</h4>
+          <pre><code>const uniqueVisitors = new Set();
+
+function registerVisit(userId) {
+  uniqueVisitors.add(userId);
+  return uniqueVisitors.size; // Total unique visitors
+}
+
+registerVisit('user123'); // 1
+registerVisit('user456'); // 2
+registerVisit('user123'); // Still 2 (duplicate not added)</code></pre>
+        </section>
+
+        <section>
+          <h3>WeakMap and WeakSet</h3>
+          <p>
+            JavaScript also provides <code>WeakMap</code> and
+            <code>WeakSet</code>, which are memory-efficient variations that
+            allow garbage collection of their keys (WeakMap) or values (WeakSet)
+            if there are no other references to them.
+          </p>
+
+          <h4>WeakMap</h4>
+          <pre><code>const weakMap = new WeakMap();
+let obj = { name: 'Example' };
+
+weakMap.set(obj, 'metadata');
+console.log(weakMap.get(obj)); // 'metadata'
+
+// If obj is set to null and garbage collected,
+// the entry in weakMap will automatically be removed
+obj = null;</code></pre>
+
+          <h4>Key Differences with WeakMap</h4>
+          <ul>
+            <li>Keys must be objects (not primitives)</li>
+            <li>Keys are weakly referenced (allows garbage collection)</li>
+            <li>Not iterable (no keys(), values(), or entries() methods)</li>
+            <li>No size property or clear() method</li>
+          </ul>
+
+          <h4>WeakSet</h4>
+          <pre><code>const weakSet = new WeakSet();
+let obj1 = { id: 1 };
+let obj2 = { id: 2 };
+
+weakSet.add(obj1);
+weakSet.add(obj2);
+
+console.log(weakSet.has(obj1)); // true
+
+// If obj1 is set to null and garbage collected,
+// it will automatically be removed from the WeakSet
+obj1 = null;</code></pre>
+
+          <h4>Key Differences with WeakSet</h4>
+          <ul>
+            <li>Can only contain objects (not primitives)</li>
+            <li>Objects are weakly referenced (allows garbage collection)</li>
+            <li>Not iterable (no values() method)</li>
+            <li>No size property or clear() method</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Converting Between Different Collection Types</h3>
+          <pre><code>// Convert Object to Map
+const obj = { name: 'John', age: 30 };
+const map = new Map(Object.entries(obj));
+
+// Convert Map to Object
+const mapObj = Object.fromEntries(map.entries());
+
+// Convert Array to Set
+const arr = [1, 2, 3, 2, 1];
+const set = new Set(arr);
+
+// Convert Set to Array
+const uniqueArr = [...set];</code></pre>
+        </section>
+
+        <section class="interactive">
+          <h3>Try It Yourself</h3>
+          <div class="editor-container">
+            <textarea id="code-editor">
+// Example: Working with Map and Set
+
+// Creating a Map for user information
+const userMap = new Map();
+
+// Add some users
+userMap.set('user123', { name: 'Alice', role: 'admin' });
+userMap.set('user456', { name: 'Bob', role: 'user' });
+userMap.set('user789', { name: 'Charlie', role: 'user' });
+
+// Using Set to track user roles
+const uniqueRoles = new Set();
+for (const [userId, userData] of userMap) {
+  uniqueRoles.add(userData.role);
+}
+
+console.log('User information:');
+for (const [userId, userData] of userMap) {
+  console.log(`${userId}: ${userData.name} (${userData.role})`);
+}
+
+console.log(`\nUnique roles (${uniqueRoles.size}): ${[...uniqueRoles].join(', ')}`);
+
+// Try modifying the code to experiment with Map and Set!</textarea
+            >
+            <div class="button-container">
+              <button id="run-button">Run</button>
+            </div>
+            <div id="output">Results will appear here...</div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2023 JavaScript Concepts Tutorial</p>
+    </footer>
+
+    <script>
+      document
+        .getElementById("run-button")
+        .addEventListener("click", function () {
+          const code = document.getElementById("code-editor").value;
+          const outputDiv = document.getElementById("output");
+
+          // Clear previous output
+          outputDiv.innerHTML = "";
+
+          // Create a new output capture system
+          const originalConsoleLog = console.log;
+          const originalConsoleError = console.error;
+
+          try {
+            // Redirect console.log and console.error to our output div
+            console.log = function () {
+              const args = Array.from(arguments);
+              const message = args
+                .map((arg) => {
+                  if (typeof arg === "object") {
+                    return JSON.stringify(arg, null, 2);
+                  }
+                  return String(arg);
+                })
+                .join(" ");
+
+              const logLine = document.createElement("div");
+              logLine.textContent = message;
+              outputDiv.appendChild(logLine);
+            };
+
+            console.error = function () {
+              const args = Array.from(arguments);
+              const message = args
+                .map((arg) => {
+                  if (typeof arg === "object") {
+                    return JSON.stringify(arg, null, 2);
+                  }
+                  return String(arg);
+                })
+                .join(" ");
+
+              const errorLine = document.createElement("div");
+              errorLine.textContent = message;
+              errorLine.className = "error";
+              outputDiv.appendChild(errorLine);
+            };
+
+            // Execute the code
+            eval(code);
+          } catch (error) {
+            outputDiv.innerHTML += `<div class="error">Error evaluating code: ${error.message}</div>`;
+          } finally {
+            // Restore original console methods
+            console.log = originalConsoleLog;
+            console.error = originalConsoleError;
+          }
+        });
+    </script>
+  </body>
+</html>

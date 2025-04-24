@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Symbols - JavaScript Concepts Tutorial</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+      </nav>
+
+      <main class="content">
+        <h2>Symbols</h2>
+
+        <div class="concept">
+          <p>
+            Symbols are a primitive data type introduced in ES6. They are unique
+            and immutable, primarily used as object property identifiers to
+            avoid name collisions.
+          </p>
+
+          <h3>Creating Symbols</h3>
+          <pre><code>// Creating a symbol
+const sym1 = Symbol();
+const sym2 = Symbol('description'); // Optional description
+
+// Each symbol is unique
+console.log(Symbol() === Symbol()); // false
+console.log(Symbol('key') === Symbol('key')); // false</code></pre>
+
+          <h3>Using Symbols as Object Properties</h3>
+          <pre><code>const ID = Symbol('id');
+const user = {
+  name: 'John',
+  age: 30,
+  [ID]: 12345 // Using a symbol as a property key
+};
+
+console.log(user.name); // 'John'
+console.log(user[ID]); // 12345
+
+// Symbols are not enumerable in for...in
+for (let key in user) {
+  console.log(key); // Only 'name' and 'age' will be logged
+}
+
+// Object.keys() also ignores Symbol properties
+console.log(Object.keys(user)); // ['name', 'age']
+
+// To get symbol properties
+console.log(Object.getOwnPropertySymbols(user)); // [Symbol(id)]</code></pre>
+
+          <h3>Global Symbol Registry</h3>
+          <p>
+            The global symbol registry allows you to access symbols across
+            different parts of your code.
+          </p>
+          <pre><code>// Creating a symbol in the global registry
+const globalSym = Symbol.for('globalId');
+
+// Retrieving the same symbol from anywhere else in the code
+const sameGlobalSym = Symbol.for('globalId');
+
+console.log(globalSym === sameGlobalSym); // true
+
+// Get the key for a symbol
+console.log(Symbol.keyFor(globalSym)); // 'globalId'
+
+// Regular symbols are not in the registry
+const localSym = Symbol('localId');
+console.log(Symbol.keyFor(localSym)); // undefined</code></pre>
+
+          <h3>Well-Known Symbols</h3>
+          <p>
+            JavaScript has built-in well-known symbols that let you customize
+            object behavior.
+          </p>
+          <pre><code>// Making an object iterable with Symbol.iterator
+const iterableObject = {
+  items: ['a', 'b', 'c'],
+  [Symbol.iterator]() {
+    let index = 0;
+    const items = this.items;
+    
+    return {
+      next() {
+        return {
+          done: index >= items.length,
+          value: items[index++]
+        };
+      }
+    };
+  }
+};
+
+// Now we can use for...of
+for (const item of iterableObject) {
+  console.log(item); // 'a', 'b', 'c'
+}</code></pre>
+
+          <h3>Common Well-Known Symbols</h3>
+          <ul>
+            <li>
+              <code>Symbol.iterator</code> - Method for creating an iterator
+            </li>
+            <li>
+              <code>Symbol.toStringTag</code> - String used by
+              Object.prototype.toString()
+            </li>
+            <li>
+              <code>Symbol.toPrimitive</code> - Method to convert an object to a
+              primitive value
+            </li>
+            <li>
+              <code>Symbol.hasInstance</code> - Method for the instanceof
+              operator
+            </li>
+            <li>
+              <code>Symbol.species</code> - Constructor function used to create
+              derived objects
+            </li>
+          </ul>
+
+          <h3>Example: Symbol.toStringTag</h3>
+          <pre><code>class CustomArray {
+  constructor() {
+    this.length = 0;
+  }
+  
+  // Customize the behavior of Object.prototype.toString
+  get [Symbol.toStringTag]() {
+    return 'CustomArray';
+  }
+}
+
+const myArray = new CustomArray();
+console.log(Object.prototype.toString.call(myArray)); // [object CustomArray]</code></pre>
+        </div>
+
+        <div class="tryit">
+          <h3>Try it yourself</h3>
+          <p>Open your browser console (F12) and try these examples:</p>
+          <pre><code>// Using symbols for private-like properties
+const _private = Symbol('private');
+
+class SecretKeeper {
+  constructor(secret) {
+    this[_private] = secret;
+  }
+  
+  // Public methods can access the private data
+  getSecret() {
+    return this[_private];
+  }
+}
+
+const keeper = new SecretKeeper('hidden message');
+console.log(keeper.getSecret()); // 'hidden message'
+console.log(keeper[_private]); // 'hidden message' (still accessible with the symbol)
+console.log(keeper._private); // undefined (not accessible as a regular property)</code></pre>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

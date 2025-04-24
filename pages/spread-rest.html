@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spread and Rest Operator - JavaScript Concepts</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="concept-page">
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+        <div class="back-link">
+          <a href="../index.html">← Back to Home</a>
+        </div>
+      </nav>
+
+      <main class="content">
+        <h2>Spread and Rest Operators in JavaScript</h2>
+
+        <div class="description">
+          <p>
+            The spread (<code>...</code>) and rest operators are powerful
+            features introduced in ES6 (ES2015). Despite sharing the same syntax
+            (<code>...</code>), they serve different purposes depending on how
+            they're used.
+          </p>
+          <p>
+            They help simplify and write more concise code when working with
+            arrays, objects, and function parameters.
+          </p>
+        </div>
+
+        <div class="example">
+          <h3>Spread Operator with Arrays</h3>
+          <p>The spread operator expands an array into individual elements:</p>
+
+          <div class="code-container">
+            <pre><code>// 1. Copying an array
+const originalArray = [1, 2, 3];
+const copyArray = [...originalArray];
+console.log(copyArray); // [1, 2, 3]
+
+// 2. Merging arrays
+const array1 = [1, 2, 3];
+const array2 = [4, 5, 6];
+const mergedArray = [...array1, ...array2];
+console.log(mergedArray); // [1, 2, 3, 4, 5, 6]
+
+// 3. Creating a new array with additional elements
+const numbers = [1, 2, 3];
+const expandedNumbers = [0, ...numbers, 4, 5];
+console.log(expandedNumbers); // [0, 1, 2, 3, 4, 5]
+
+// 4. Converting string to array of characters
+const str = "hello";
+const chars = [...str];
+console.log(chars); // ['h', 'e', 'l', 'l', 'o']
+
+// 5. Using with Math functions
+const nums = [5, 3, 8, 1, 4];
+console.log(Math.max(...nums)); // 8 (equivalent to Math.max(5, 3, 8, 1, 4))</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Spread Operator with Objects</h3>
+          <p>
+            The spread operator works with objects to create shallow copies and
+            merge objects:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// 1. Copying an object (shallow copy)
+const originalObj = { name: 'Alice', age: 30 };
+const copyObj = { ...originalObj };
+console.log(copyObj); // { name: 'Alice', age: 30 }
+
+// 2. Merging objects
+const person = { name: 'Bob', age: 25 };
+const details = { job: 'Developer', city: 'New York' };
+const mergedPerson = { ...person, ...details };
+console.log(mergedPerson); 
+// { name: 'Bob', age: 25, job: 'Developer', city: 'New York' }
+
+// 3. Creating a new object with modifications
+const user = { id: 1, name: 'Charlie', email: 'charlie@example.com' };
+const updatedUser = { ...user, email: 'charlie.new@example.com', role: 'Admin' };
+console.log(updatedUser);
+// { id: 1, name: 'Charlie', email: 'charlie.new@example.com', role: 'Admin' }
+
+// 4. Property order matters for duplicated properties
+const obj1 = { a: 1, b: 2 };
+const obj2 = { b: 3, c: 4 }; // Note that 'b' is duplicated
+const merged1 = { ...obj1, ...obj2 }; // obj2 properties override obj1
+console.log(merged1); // { a: 1, b: 3, c: 4 }
+
+const merged2 = { ...obj2, ...obj1 }; // obj1 properties override obj2
+console.log(merged2); // { b: 2, c: 4, a: 1 }</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Rest Operator with Arrays</h3>
+          <p>
+            The rest operator collects multiple elements into an array. It's
+            often used in destructuring:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// 1. Collecting remaining array elements
+const [first, second, ...remaining] = [1, 2, 3, 4, 5];
+console.log(first);     // 1
+console.log(second);    // 2
+console.log(remaining); // [3, 4, 5]
+
+// 2. Skipping elements
+const [head, ...tail] = [10, 20, 30, 40, 50];
+console.log(head); // 10
+console.log(tail); // [20, 30, 40, 50]
+
+// 3. Collecting specific parts
+const scores = [85, 92, 78, 90, 88];
+const [highest, ...otherScores] = scores.sort((a, b) => b - a);
+console.log(highest);     // 92
+console.log(otherScores); // [90, 88, 85, 78]</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Rest Operator with Objects</h3>
+          <p>
+            The rest operator can collect remaining object properties during
+            destructuring:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// 1. Collecting remaining object properties
+const person = {
+  name: 'Alice',
+  age: 30,
+  job: 'Engineer',
+  city: 'San Francisco',
+  country: 'USA'
+};
+
+const { name, age, ...otherDetails } = person;
+console.log(name);          // 'Alice'
+console.log(age);           // 30
+console.log(otherDetails);  // { job: 'Engineer', city: 'San Francisco', country: 'USA' }
+
+// 2. Extracting specific properties
+const product = {
+  id: 'P123',
+  name: 'Laptop',
+  price: 999,
+  brand: 'TechBrand',
+  specs: {
+    cpu: 'i7',
+    ram: '16GB',
+    storage: '512GB'
+  }
+};
+
+const { id, name: productName, ...productDetails } = product;
+console.log(id);             // 'P123'
+console.log(productName);    // 'Laptop'
+console.log(productDetails); // { price: 999, brand: 'TechBrand', specs: {...} }</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Rest Parameters in Functions</h3>
+          <p>
+            The rest parameter syntax allows functions to accept an indefinite
+            number of arguments as an array:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// 1. Collecting all arguments
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+
+console.log(sum(1, 2, 3));       // 6
+console.log(sum(5, 10, 15, 20)); // 50
+
+// 2. Collecting remaining arguments
+function calculate(operation, ...numbers) {
+  if (operation === 'sum') {
+    return numbers.reduce((total, num) => total + num, 0);
+  } else if (operation === 'multiply') {
+    return numbers.reduce((result, num) => result * num, 1);
+  }
+  return null;
+}
+
+console.log(calculate('sum', 1, 2, 3, 4));        // 10
+console.log(calculate('multiply', 2, 3, 4));      // 24
+
+// 3. Combining with regular parameters
+function formatName(title, firstName, lastName, ...titles) {
+  return `${title} ${firstName} ${lastName}${titles.length ? ', ' + titles.join(', ') : ''}`;
+}
+
+console.log(formatName('Mr.', 'John', 'Doe')); // "Mr. John Doe"
+console.log(formatName('Dr.', 'Jane', 'Smith', 'PhD', 'Professor')); // "Dr. Jane Smith, PhD, Professor"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Practical Use Cases</h3>
+          <p>Common real-world applications of spread and rest operators:</p>
+
+          <div class="code-container">
+            <pre><code>// 1. Cloning and updating immutable objects (common in React/Redux)
+function updateUser(user, updates) {
+  return { ...user, ...updates };
+}
+
+const user = { id: 1, name: 'Alice', email: 'alice@example.com' };
+const updatedUser = updateUser(user, { email: 'newalice@example.com' });
+console.log(updatedUser); // { id: 1, name: 'Alice', email: 'newalice@example.com' }
+
+// 2. Adding items to an array without mutating the original
+function addItem(array, item) {
+  return [...array, item];
+}
+
+const fruits = ['apple', 'banana', 'orange'];
+const newFruits = addItem(fruits, 'grape');
+console.log(fruits);     // ['apple', 'banana', 'orange'] (unchanged)
+console.log(newFruits);  // ['apple', 'banana', 'orange', 'grape']
+
+// 3. Function composition with multiple arguments
+function applyFunctions(value, ...functions) {
+  return functions.reduce((result, func) => func(result), value);
+}
+
+const double = x => x * 2;
+const increment = x => x + 1;
+const square = x => x * x;
+
+console.log(applyFunctions(3, double, increment, square)); // 49 ((3*2+1)²)
+
+// 4. Converting NodeList to Array
+// document.querySelectorAll() returns a NodeList, not an Array
+// const elements = document.querySelectorAll('.some-class');
+// const elementsArray = [...elements]; // Now it's a real array with all array methods
+
+// 5. Removing specific properties from an object (via destructuring and rest)
+function removeProperty(obj, prop) {
+  const { [prop]: _, ...rest } = obj;
+  return rest;
+}
+
+const config = { server: 'localhost', port: 8080, timeout: 1000 };
+const configWithoutTimeout = removeProperty(config, 'timeout');
+console.log(configWithoutTimeout); // { server: 'localhost', port: 8080 }</code></pre>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

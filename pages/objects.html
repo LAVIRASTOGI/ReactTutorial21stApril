@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objects - JavaScript Concepts</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="concept-page">
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+        <div class="back-link">
+          <a href="../index.html">← Back to Home</a>
+        </div>
+      </nav>
+
+      <main class="content">
+        <h2>Objects in JavaScript</h2>
+
+        <div class="description">
+          <p>
+            Objects are one of the most important data types in JavaScript. They
+            allow you to store collections of data and more complex entities.
+          </p>
+          <p>
+            In JavaScript, an object is a collection of key-value pairs, where
+            keys are strings (or Symbols) and values can be any data type,
+            including other objects.
+          </p>
+        </div>
+
+        <div class="example">
+          <h3>Creating Objects</h3>
+          <p>There are multiple ways to create objects in JavaScript:</p>
+
+          <div class="code-container">
+            <pre><code>// Object literal (most common)
+const person = {
+  name: 'John',
+  age: 30,
+  isEmployed: true
+};
+
+// Using the Object constructor
+const car = new Object();
+car.make = 'Toyota';
+car.model = 'Camry';
+car.year = 2020;
+
+// Using Object.create()
+const animal = Object.create(null); // Creates an object with no prototype
+animal.species = 'Dog';
+animal.sound = 'Woof';</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Accessing Object Properties</h3>
+          <p>You can access object properties in two ways:</p>
+
+          <div class="code-container">
+            <pre><code>// Dot notation
+console.log(person.name); // "John"
+console.log(car.make);    // "Toyota"
+
+// Bracket notation (useful when property names are dynamic or contain special characters)
+console.log(person['age']);     // 30
+const propertyName = 'model';
+console.log(car[propertyName]); // "Camry"
+
+// Accessing non-existent properties returns undefined
+console.log(person.address);    // undefined</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Modifying Objects</h3>
+          <p>Objects in JavaScript are mutable and can be modified:</p>
+
+          <div class="code-container">
+            <pre><code>// Adding new properties
+person.address = '123 Main St';
+person['email'] = 'john@example.com';
+
+// Modifying existing properties
+person.age = 31;
+
+// Deleting properties
+delete person.isEmployed;
+
+console.log(person);
+// { name: 'John', age: 31, address: '123 Main St', email: 'john@example.com' }</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Methods in Objects</h3>
+          <p>
+            Objects can contain functions as properties, which are called
+            methods:
+          </p>
+
+          <div class="code-container">
+            <pre><code>const person = {
+  name: 'Alice',
+  age: 25,
+  // Method defined using function keyword
+  greet: function() {
+    return `Hello, my name is ${this.name}!`;
+  },
+  // Method defined using shorthand syntax (ES6)
+  introduce() {
+    return `I am ${this.age} years old.`;
+  }
+};
+
+console.log(person.greet());     // "Hello, my name is Alice!"
+console.log(person.introduce()); // "I am 25 years old."</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Object Properties and Methods</h3>
+          <p>
+            JavaScript provides several built-in methods for working with
+            objects:
+          </p>
+
+          <div class="code-container">
+            <pre><code>const user = {
+  id: 1,
+  username: 'alice123',
+  email: 'alice@example.com',
+  isAdmin: false
+};
+
+// Object.keys() - returns an array of the object's own enumerable property names
+console.log(Object.keys(user));
+// ["id", "username", "email", "isAdmin"]
+
+// Object.values() - returns an array of the object's own enumerable property values
+console.log(Object.values(user));
+// [1, "alice123", "alice@example.com", false]
+
+// Object.entries() - returns an array of [key, value] pairs
+console.log(Object.entries(user));
+// [["id", 1], ["username", "alice123"], ["email", "alice@example.com"], ["isAdmin", false]]
+
+// Object.assign() - copies properties from one object to another
+const defaults = { theme: 'light', notifications: true };
+const preferences = { theme: 'dark' };
+const mergedSettings = Object.assign({}, defaults, preferences);
+console.log(mergedSettings);
+// { theme: "dark", notifications: true }</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Object.freeze() and Object.seal()</h3>
+          <p>Methods to control object mutability:</p>
+
+          <div class="code-container">
+            <pre><code>// Object.freeze() - prevents adding, removing, or changing properties
+const frozenObj = { x: 1, y: 2 };
+Object.freeze(frozenObj);
+
+// These operations will fail silently (or throw error in strict mode)
+frozenObj.x = 10;      // No change
+frozenObj.z = 3;       // No addition
+delete frozenObj.y;    // No deletion
+console.log(frozenObj); // { x: 1, y: 2 }
+
+// Object.seal() - prevents adding or removing properties, but allows changing existing ones
+const sealedObj = { a: 1, b: 2 };
+Object.seal(sealedObj);
+
+sealedObj.a = 10;      // Allowed (changing existing property)
+sealedObj.c = 3;       // No addition
+delete sealedObj.b;    // No deletion
+console.log(sealedObj); // { a: 10, b: 2 }</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Computed Property Names (ES6)</h3>
+          <p>You can use expressions as property names in object literals:</p>
+
+          <div class="code-container">
+            <pre><code>// Computed property names
+const propertyName = 'age';
+const propertyPrefix = 'user';
+
+const person = {
+  name: 'Bob',
+  [propertyName]: 35,              // Use variable as property name
+  [`${propertyPrefix}Id`]: 'U123'  // Use expression as property name
+};
+
+console.log(person.age);     // 35
+console.log(person.userId);  // "U123"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Property Shorthand (ES6)</h3>
+          <p>When variables have the same name as object properties:</p>
+
+          <div class="code-container">
+            <pre><code>// Property shorthand
+const name = 'Charlie';
+const age = 40;
+const job = 'Developer';
+
+// Instead of { name: name, age: age, job: job }
+const user = { name, age, job };
+
+console.log(user); // { name: "Charlie", age: 40, job: "Developer" }</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Object Destructuring (ES6)</h3>
+          <p>Extracting object properties into variables:</p>
+
+          <div class="code-container">
+            <pre><code>const product = {
+  id: 'P123',
+  name: 'Laptop',
+  price: 999,
+  specs: {
+    ram: '16GB',
+    storage: '512GB SSD',
+    cpu: 'i7'
+  }
+};
+
+// Basic destructuring
+const { name, price } = product;
+console.log(name, price); // "Laptop" 999
+
+// Destructuring with new variable names
+const { id: productId, specs: specifications } = product;
+console.log(productId, specifications); // "P123" { ram: "16GB", storage: "512GB SSD", cpu: "i7" }
+
+// Nested destructuring
+const { specs: { ram, cpu } } = product;
+console.log(ram, cpu); // "16GB" "i7"
+
+// Default values
+const { category = 'Electronics' } = product;
+console.log(category); // "Electronics" (not in object, so default value is used)</code></pre>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

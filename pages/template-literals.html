@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template Literals - JavaScript Concepts</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="concept-page">
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+        <div class="back-link">
+          <a href="../index.html">← Back to Home</a>
+        </div>
+      </nav>
+
+      <main class="content">
+        <h2>Template Literals in JavaScript</h2>
+
+        <div class="description">
+          <p>
+            Template literals, introduced in ES6 (ES2015), provide an improved
+            way to work with strings in JavaScript. They offer string
+            interpolation, multi-line strings, and tagged templates without the
+            need for concatenation or escape characters.
+          </p>
+          <p>
+            Template literals are enclosed by backtick (`) characters instead of
+            single or double quotes, making them more versatile than traditional
+            string literals.
+          </p>
+        </div>
+
+        <div class="example">
+          <h3>Basic Syntax</h3>
+          <p>
+            Template literals are created using backticks (`) instead of quotes:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Traditional string with quotes
+const message1 = "Hello, world!";
+const message2 = 'Hello, world!';
+
+// Template literal with backticks
+const message3 = `Hello, world!`;
+
+console.log(message1); // "Hello, world!"
+console.log(message2); // "Hello, world!"
+console.log(message3); // "Hello, world!"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>String Interpolation</h3>
+          <p>
+            Template literals allow embedding expressions using
+            $&#123;expression&#125; syntax:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Traditional string concatenation
+const name = "Alice";
+const age = 28;
+const greeting1 = "Hello, my name is " + name + " and I am " + age + " years old.";
+
+// Using template literals
+const greeting2 = `Hello, my name is ${name} and I am ${age} years old.`;
+
+console.log(greeting1); // "Hello, my name is Alice and I am 28 years old."
+console.log(greeting2); // "Hello, my name is Alice and I am 28 years old."
+
+// Expressions in template literals
+console.log(`2 + 2 = ${2 + 2}`); // "2 + 2 = 4"
+console.log(`Today is ${new Date().toLocaleDateString()}`);
+
+// Using functions in expressions
+const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
+console.log(`Hello, ${capitalize(name)}`); // "Hello, Alice"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Multi-line Strings</h3>
+          <p>
+            Template literals preserve line breaks, making multi-line strings
+            easy to write:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Traditional multi-line strings (with escape characters)
+const multiLine1 = "Line 1\nLine 2\nLine 3";
+
+// Multi-line template literal
+const multiLine2 = `Line 1
+Line 2
+Line 3`;
+
+console.log(multiLine1);
+// Line 1
+// Line 2
+// Line 3
+
+console.log(multiLine2);
+// Line 1
+// Line 2
+// Line 3
+
+// Multi-line with interpolation
+const title = "Features";
+const list = `ES6 ${title}:
+1. Template literals
+2. Arrow functions
+3. Destructuring
+4. Classes`;
+
+console.log(list);
+// ES6 Features:
+// 1. Template literals
+// 2. Arrow functions
+// 3. Destructuring
+// 4. Classes</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>HTML Templates</h3>
+          <p>Template literals are perfect for creating HTML templates:</p>
+
+          <div class="code-container">
+            <pre><code>// Creating HTML with template literals
+const user = {
+  name: 'John Doe',
+  avatar: 'https://example.com/avatar.jpg',
+  role: 'Admin',
+  lastLogin: new Date().toLocaleString()
+};
+
+const userCard = `
+  <div class="user-card">
+    <img src="${user.avatar}" alt="${user.name}" class="avatar">
+    <div class="user-info">
+      <h3>${user.name}</h3>
+      <p>Role: ${user.role}</p>
+      <p>Last Login: ${user.lastLogin}</p>
+    </div>
+  </div>
+`;
+
+// In real code, you might do:
+// document.getElementById('user-container').innerHTML = userCard;
+
+// Creating a list from an array
+const fruits = ['Apple', 'Banana', 'Orange', 'Mango'];
+
+const fruitList = `
+  <ul>
+    ${fruits.map(fruit => `<li>${fruit}</li>`).join('')}
+  </ul>
+`;
+
+console.log(fruitList);
+// <ul>
+//   <li>Apple</li>
+//   <li>Banana</li>
+//   <li>Orange</li>
+//   <li>Mango</li>
+// </ul></code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Tagged Templates</h3>
+          <p>
+            Tagged templates allow you to parse template literals with a
+            function:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Tagged template function
+function highlight(strings, ...values) {
+  return strings.reduce((result, str, i) => {
+    const value = values[i] || '';
+    const highlighted = typeof value === 'number' 
+      ? `<span class="number">${value}</span>` 
+      : value;
+    return result + str + highlighted;
+  }, '');
+}
+
+// Using the tag function
+const price = 19.99;
+const product = 'JavaScript Book';
+const message = highlight`The ${product} costs $${price}!`;
+
+console.log(message);
+// "The JavaScript Book costs $<span class="number">19.99</span>!"
+
+// More complex tagged template example
+function sql(strings, ...values) {
+  // Create a prepared statement with placeholders
+  const statement = strings.reduce((result, str, i) => {
+    return result + str + (i < values.length ? '?' : '');
+  }, '');
+  
+  // Return an object with the statement and values
+  return {
+    statement,
+    values,
+    execute() {
+      return `Executing SQL: ${this.statement} with values: ${this.values}`;
+    }
+  };
+}
+
+const userId = 42;
+const role = 'admin';
+const query = sql`SELECT * FROM users WHERE id = ${userId} AND role = ${role}`;
+
+console.log(query.statement); // "SELECT * FROM users WHERE id = ? AND role = ?"
+console.log(query.values);    // [42, "admin"]
+console.log(query.execute());  // "Executing SQL: SELECT * FROM users WHERE id = ? AND role = ? with values: 42,admin"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Escape Sequences</h3>
+          <p>
+            Template literals support escape sequences like traditional strings:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Using escape sequences in template literals
+const path = `C:\\Documents\\Files`;  // Escaping backslashes
+console.log(path); // "C:\Documents\Files"
+
+// Escaping backticks
+const code = `The backtick character (\`) is used for template literals`;
+console.log(code); // "The backtick character (`) is used for template literals"
+
+// Escaping ${} syntax
+const syntax = `To write \${variable} literally, escape the $ symbol`;
+console.log(syntax); // "To write ${variable} literally, escape the $ symbol"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Best Practices and Tips</h3>
+          <p>Guidelines for using template literals effectively:</p>
+
+          <div class="code-container">
+            <pre><code>// 1. Use template literals for string interpolation
+// Good
+const message = `Hello, ${userName}!`;
+
+// Avoid
+const message = "Hello, " + userName + "!";
+
+// 2. Use template literals for multi-line strings
+// Good
+const html = `
+  <div>
+    <h1>Title</h1>
+    <p>Content</p>
+  </div>
+`;
+
+// Avoid
+const html = "<div>\n" +
+  "  <h1>Title</h1>\n" +
+  "  <p>Content</p>\n" +
+  "</div>";
+
+// 3. For complex HTML generation, consider using functions
+function createUserCard(user) {
+  return `
+    <div class="card">
+      <h2>${user.name}</h2>
+      <p>${user.bio}</p>
+    </div>
+  `;
+}
+
+// 4. Be careful with spaces and indentation
+// This includes leading and trailing spaces
+const indented = `
+  This will have
+  leading and trailing
+  whitespace
+`; 
+
+// You can use trim() to remove unwanted whitespace
+const trimmed = `
+  This will be trimmed
+  but maintain internal spacing
+`.trim();</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Raw Strings</h3>
+          <p>Using String.raw to get the raw template string:</p>
+
+          <div class="code-container">
+            <pre><code>// String.raw for raw template literals
+const filePath = String.raw`C:\Users\Documents\file.txt`;
+console.log(filePath); // "C:\Users\Documents\file.txt"
+
+// Without String.raw, the \U would be interpreted as an escape sequence
+const windowsPath = `C:\Users\Documents\file.txt`;
+console.log(windowsPath); // Would interpret \U, \D, etc. as escape sequences
+
+// Raw tagged templates
+function tag(strings, ...values) {
+  console.log(strings.raw); // Array of raw strings
+  return strings.raw[0];
+}
+
+const result = tag`Hello\nWorld`;
+console.log(result); // "Hello\nWorld" (not interpreted as a newline)</code></pre>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

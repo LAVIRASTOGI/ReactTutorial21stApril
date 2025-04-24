@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operators - JavaScript Concepts</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="concept-page">
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+        <div class="back-link">
+          <a href="../index.html">← Back to Home</a>
+        </div>
+      </nav>
+
+      <main class="content">
+        <h2>JavaScript Operators</h2>
+
+        <div class="description">
+          <p>
+            Operators are symbols that perform operations on operands (values
+            and variables). JavaScript has various types of operators for
+            different purposes.
+          </p>
+        </div>
+
+        <div class="example">
+          <h3>Arithmetic Operators</h3>
+          <p>Used to perform mathematical operations:</p>
+
+          <div class="code-container">
+            <pre><code>// Addition
+console.log(5 + 3); // 8
+
+// Subtraction
+console.log(5 - 3); // 2
+
+// Multiplication
+console.log(5 * 3); // 15
+
+// Division
+console.log(10 / 2); // 5
+
+// Modulus (Remainder)
+console.log(10 % 3); // 1
+
+// Exponentiation (ES2016)
+console.log(2 ** 3); // 8
+
+// Increment
+let a = 5;
+console.log(a++); // 5 (returns then increments)
+console.log(a);   // 6
+
+// Decrement
+let b = 5;
+console.log(--b); // 4 (decrements then returns)
+console.log(b);   // 4</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Comparison Operators</h3>
+          <p>Used to compare values and return true or false:</p>
+
+          <div class="code-container">
+            <pre><code>// Equal (value)
+console.log(5 == 5);   // true
+console.log('5' == 5); // true (type coercion)
+
+// Strict equal (value and type)
+console.log(5 === 5);   // true
+console.log('5' === 5); // false
+
+// Not equal (value)
+console.log(5 != 8);   // true
+console.log('5' != 5); // false (type coercion)
+
+// Strict not equal (value and type)
+console.log(5 !== 8);   // true
+console.log('5' !== 5); // true
+
+// Greater than
+console.log(8 > 5);  // true
+
+// Less than
+console.log(5 < 8);  // true
+
+// Greater than or equal to
+console.log(8 >= 8); // true
+
+// Less than or equal to
+console.log(5 <= 5); // true</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Logical Operators</h3>
+          <p>Used to determine the logic between variables or values:</p>
+
+          <div class="code-container">
+            <pre><code>// Logical AND (&&) - returns true if both operands are true
+console.log(true && true);   // true
+console.log(true && false);  // false
+console.log(false && true);  // false
+console.log(false && false); // false
+
+// Logical OR (||) - returns true if at least one operand is true
+console.log(true || true);   // true
+console.log(true || false);  // true
+console.log(false || true);  // true
+console.log(false || false); // false
+
+// Logical NOT (!) - returns the opposite boolean value
+console.log(!true);  // false
+console.log(!false); // true
+
+// Short-circuit evaluation
+console.log(true && 'Hello');  // 'Hello'
+console.log(false && 'Hello'); // false
+console.log(true || 'Hello');  // true
+console.log(false || 'Hello'); // 'Hello'</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Assignment Operators</h3>
+          <p>Used to assign values to variables:</p>
+
+          <div class="code-container">
+            <pre><code>// Basic assignment
+let x = 10;
+
+// Addition assignment
+x += 5; // x = x + 5 = 15
+
+// Subtraction assignment
+x -= 3; // x = x - 3 = 12
+
+// Multiplication assignment
+x *= 2; // x = x * 2 = 24
+
+// Division assignment
+x /= 4; // x = x / 4 = 6
+
+// Modulus assignment
+x %= 4; // x = x % 4 = 2
+
+// Exponentiation assignment
+x **= 3; // x = x ** 3 = 8</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Conditional (Ternary) Operator</h3>
+          <p>A shorthand for if-else statements:</p>
+
+          <div class="code-container">
+            <pre><code>// Syntax: condition ? valueIfTrue : valueIfFalse
+
+// Example
+const age = 20;
+const canVote = age >= 18 ? 'Yes' : 'No';
+console.log(canVote); // 'Yes'
+
+// Nested ternary
+const status = age < 18 ? 'Minor' : age < 65 ? 'Adult' : 'Senior';
+console.log(status); // 'Adult'</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Nullish Coalescing Operator (??)</h3>
+          <p>
+            Returns the right-hand operand when the left one is null or
+            undefined:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Nullish coalescing operator (??) - ES2020
+const nullValue = null;
+const undefinedValue = undefined;
+const emptyString = '';
+const zero = 0;
+const someValue = 'Hello';
+
+console.log(nullValue ?? 'Default');      // 'Default'
+console.log(undefinedValue ?? 'Default'); // 'Default'
+console.log(emptyString ?? 'Default');    // '' (empty string is not nullish)
+console.log(zero ?? 'Default');           // 0 (0 is not nullish)
+console.log(someValue ?? 'Default');      // 'Hello'
+
+// Difference with OR (||) operator
+console.log(emptyString || 'Default');    // 'Default' (empty string is falsy)
+console.log(zero || 'Default');           // 'Default' (0 is falsy)</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Optional Chaining Operator (?.)</h3>
+          <p>
+            Allows reading properties from deeply nested objects without
+            checking each level:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Optional chaining operator (?.) - ES2020
+const user = {
+  name: 'John',
+  address: {
+    city: 'New York'
+  }
+};
+
+const emptyUser = {};
+
+console.log(user.address.city); // 'New York'
+// console.log(emptyUser.address.city); // Error: Cannot read property 'city' of undefined
+
+// With optional chaining
+console.log(emptyUser?.address?.city); // undefined (no error)
+console.log(user?.address?.city);      // 'New York'
+
+// With methods
+console.log(user.getFullName?.()); // undefined (no error if method doesn't exist)</code></pre>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

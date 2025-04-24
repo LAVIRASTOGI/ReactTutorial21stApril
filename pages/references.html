@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reference and Primitive Values - JavaScript Concepts</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="concept-page">
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+        <div class="back-link">
+          <a href="../index.html">← Back to Home</a>
+        </div>
+      </nav>
+
+      <main class="content">
+        <h2>Reference and Primitive Values in JavaScript</h2>
+
+        <div class="description">
+          <p>
+            In JavaScript, values can be categorized into two main types:
+            primitive values and reference values. Understanding the difference
+            between these two types is crucial as it affects how values are
+            stored, compared, and passed to functions.
+          </p>
+        </div>
+
+        <div class="example">
+          <h3>Primitive Values</h3>
+          <p>
+            Primitive values are simple, immutable data types that are stored
+            directly in memory:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Primitive data types in JavaScript:
+// 1. String
+const name = "Alice";
+
+// 2. Number
+const age = 30;
+const price = 99.99;
+
+// 3. Boolean
+const isActive = true;
+
+// 4. Undefined
+let username;  // defaults to undefined
+
+// 5. Null
+const data = null;
+
+// 6. Symbol (ES6)
+const id = Symbol('id');
+
+// 7. BigInt (ES2020)
+const bigNumber = 9007199254740991n;</code></pre>
+          </div>
+
+          <p>Key characteristics of primitive values:</p>
+          <ul>
+            <li>Immutable (cannot be changed)</li>
+            <li>Compared by value</li>
+            <li>Stored directly where the variable is accessed</li>
+            <li>Copied by value when assigned or passed to functions</li>
+          </ul>
+        </div>
+
+        <div class="example">
+          <h3>Reference Values</h3>
+          <p>
+            Reference values are more complex data types that store references
+            to locations in memory:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Reference data types in JavaScript:
+// 1. Object
+const person = {
+  name: "Bob",
+  age: 25
+};
+
+// 2. Array (which is a type of object)
+const colors = ["red", "green", "blue"];
+
+// 3. Function (which is a type of object)
+function greet() {
+  return "Hello!";
+}
+
+// 4. Date (which is a type of object)
+const today = new Date();
+
+// 5. RegExp (which is a type of object)
+const pattern = /\d+/;
+
+// 6. Maps, Sets, WeakMaps, WeakSets (ES6)
+const userMap = new Map();
+const uniqueIds = new Set();</code></pre>
+          </div>
+
+          <p>Key characteristics of reference values:</p>
+          <ul>
+            <li>Mutable (can be changed)</li>
+            <li>Compared by reference (memory address)</li>
+            <li>Stored as a reference to a location in memory</li>
+            <li>Copied by reference when assigned or passed to functions</li>
+          </ul>
+        </div>
+
+        <div class="example">
+          <h3>Value vs. Reference Comparison</h3>
+          <p>Understanding how primitive and reference values are compared:</p>
+
+          <div class="code-container">
+            <pre><code>// Primitive value comparison (compared by value)
+let a = 5;
+let b = 5;
+console.log(a === b); // true (same value)
+
+let str1 = "hello";
+let str2 = "hello";
+console.log(str1 === str2); // true (same value)
+
+// Reference value comparison (compared by reference)
+let obj1 = { name: "Alice" };
+let obj2 = { name: "Alice" };
+console.log(obj1 === obj2); // false (different objects in memory)
+
+let arr1 = [1, 2, 3];
+let arr2 = [1, 2, 3];
+console.log(arr1 === arr2); // false (different arrays in memory)
+
+// Comparing to the same reference
+let obj3 = obj1;
+console.log(obj1 === obj3); // true (same reference)
+
+let arr3 = arr1;
+console.log(arr1 === arr3); // true (same reference)</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Passing Values to Functions</h3>
+          <p>
+            How primitive and reference values behave when passed to functions:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Primitive values are passed by value
+function incrementPrimitive(num) {
+  num += 1;
+  console.log("Inside function:", num); // Incremented value
+}
+
+let count = 5;
+incrementPrimitive(count);
+console.log("Outside function:", count); // Still 5 (unchanged)
+
+// Reference values are passed by reference
+function modifyObject(obj) {
+  obj.value += 1;
+  console.log("Inside function:", obj.value); // Incremented value
+}
+
+let data = { value: 5 };
+modifyObject(data);
+console.log("Outside function:", data.value); // 6 (changed)
+
+// However, reassigning the reference doesn't affect the original
+function replaceObject(obj) {
+  obj = { value: 10 }; // Creates a new object
+  console.log("Inside function:", obj.value); // 10
+}
+
+let config = { value: 5 };
+replaceObject(config);
+console.log("Outside function:", config.value); // Still 5 (unchanged)</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Copying Values</h3>
+          <p>Different ways to copy primitive and reference values:</p>
+
+          <div class="code-container">
+            <pre><code>// Copying primitive values (creates a true copy)
+let original = 42;
+let copy = original;
+
+copy = 100; // Modifying the copy
+console.log(original); // 42 (unchanged)
+console.log(copy);     // 100
+
+// Copying reference values (creates a reference to the same object)
+let originalObj = { name: "Alice", age: 30 };
+let copyObj = originalObj;
+
+copyObj.age = 31; // Modifying the copy also modifies the original
+console.log(originalObj.age); // 31 (changed)
+console.log(copyObj.age);     // 31
+
+// Creating a shallow copy of an object
+// Method 1: Using Object.assign()
+let person = { name: "Bob", age: 25, address: { city: "New York" } };
+let shallowCopy1 = Object.assign({}, person);
+
+// Method 2: Using spread operator (ES6)
+let shallowCopy2 = { ...person };
+
+shallowCopy1.age = 26; // This won't affect the original
+console.log(person.age);      // 25 (unchanged)
+console.log(shallowCopy1.age); // 26
+
+// But nested objects are still shared references!
+shallowCopy2.address.city = "Boston"; // This affects the original
+console.log(person.address.city);      // "Boston" (changed)
+console.log(shallowCopy2.address.city); // "Boston"
+
+// Creating a deep copy (one way, but not perfect for all cases)
+let deepCopy = JSON.parse(JSON.stringify(person));
+deepCopy.address.city = "Chicago"; // This won't affect the original
+console.log(person.address.city);      // "Boston" (unchanged)
+console.log(deepCopy.address.city);    // "Chicago"</code></pre>
+          </div>
+
+          <p>Note: The JSON.parse/stringify method has limitations:</p>
+          <ul>
+            <li>Functions, undefined, and Symbols are lost</li>
+            <li>Circular references cause errors</li>
+            <li>Date objects become strings</li>
+            <li>
+              Maps, Sets, and other specialized objects are not properly copied
+            </li>
+          </ul>
+        </div>
+
+        <div class="example">
+          <h3>Immutability and Pure Functions</h3>
+          <p>Working with immutable data patterns in JavaScript:</p>
+
+          <div class="code-container">
+            <pre><code>// Instead of modifying objects directly, create new copies
+function updateUser(user, newProps) {
+  // Return a new object with the old properties and updated ones
+  return {
+    ...user,
+    ...newProps
+  };
+}
+
+const user = {
+  id: 123,
+  name: "Alice",
+  email: "alice@example.com"
+};
+
+// Create a new user object with updated email
+const updatedUser = updateUser(user, { email: "alice.new@example.com" });
+
+console.log(user.email);        // "alice@example.com" (unchanged)
+console.log(updatedUser.email); // "alice.new@example.com"
+
+// For arrays, use non-mutating methods
+const numbers = [1, 2, 3, 4, 5];
+
+// Instead of push (mutating)
+// numbers.push(6);
+
+// Use concat or spread (non-mutating)
+const newNumbers = [...numbers, 6];
+console.log(numbers);    // [1, 2, 3, 4, 5] (unchanged)
+console.log(newNumbers); // [1, 2, 3, 4, 5, 6]
+
+// Instead of splice (mutating)
+// numbers.splice(2, 1);
+
+// Use filter (non-mutating)
+const filteredNumbers = numbers.filter((_, index) => index !== 2);
+console.log(numbers);          // [1, 2, 3, 4, 5] (unchanged)
+console.log(filteredNumbers);  // [1, 2, 4, 5]</code></pre>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

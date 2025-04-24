@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Types - JavaScript Concepts</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="concept-page">
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+        <div class="back-link">
+          <a href="../index.html">← Back to Home</a>
+        </div>
+      </nav>
+
+      <main class="content">
+        <h2>Data Types in JavaScript</h2>
+
+        <div class="description">
+          <p>
+            JavaScript has eight basic data types that can be divided into two
+            main categories: <strong>primitive</strong> and
+            <strong>reference</strong> types.
+          </p>
+          <p>
+            Understanding data types is fundamental to programming in JavaScript
+            as it affects how values are stored, compared, and manipulated.
+          </p>
+        </div>
+
+        <div class="example">
+          <h3>Primitive Data Types</h3>
+          <p>
+            Primitive values are <em>immutable</em> (cannot be changed) and are
+            passed by value.
+          </p>
+
+          <div class="code-container">
+            <pre><code>// String
+const name = "Alice";
+
+// Number
+const age = 30;
+const pi = 3.14159;
+
+// Boolean
+const isActive = true;
+
+// Undefined
+let username;  // Value is undefined
+
+// Null
+const data = null;
+
+// Symbol (ES6)
+const id = Symbol('id');
+
+// BigInt (ES2020)
+const bigNumber = 9007199254740991n;</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Reference Data Types</h3>
+          <p>
+            Reference types are <em>mutable</em> and are passed by reference.
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Object
+const person = {
+  name: "Bob",
+  age: 25
+};
+
+// Array (which is a type of object)
+const colors = ["red", "green", "blue"];
+
+// Function (which is a type of object)
+function greet() {
+  return "Hello!";
+}
+
+// Date (which is a type of object)
+const today = new Date();</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Type Checking</h3>
+          <p>
+            You can check the type of a value using the
+            <code>typeof</code> operator:
+          </p>
+
+          <div class="code-container">
+            <pre><code>console.log(typeof "Hello");  // "string"
+console.log(typeof 42);       // "number"
+console.log(typeof true);     // "boolean"
+console.log(typeof undefined);// "undefined"
+console.log(typeof null);     // "object" (this is a known JavaScript bug)
+console.log(typeof Symbol()); // "symbol"
+console.log(typeof 10n);      // "bigint"
+console.log(typeof {});       // "object"
+console.log(typeof []);       // "object" (arrays are objects)
+console.log(typeof function(){});// "function"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Type Conversion</h3>
+          <p>JavaScript allows values to be converted between types:</p>
+
+          <div class="code-container">
+            <pre><code>// String to Number
+console.log(Number("42"));     // 42
+console.log(parseInt("42"));   // 42
+console.log(parseFloat("3.14"));// 3.14
+console.log(+"42");            // 42 (unary plus)
+
+// Number to String
+console.log(String(42));       // "42"
+console.log((42).toString());  // "42"
+console.log(42 + "");          // "42" (implicit conversion)
+
+// Boolean conversion
+console.log(Boolean(1));       // true
+console.log(Boolean(0));       // false
+console.log(Boolean(""));      // false
+console.log(Boolean("hello")); // true
+console.log(!!"hello");        // true (double negation)</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Type Coercion</h3>
+          <p>
+            JavaScript may automatically convert types when an operation
+            involves mismatched types:
+          </p>
+
+          <div class="code-container">
+            <pre><code>console.log("5" + 2);      // "52" (number converted to string)
+console.log("5" - 2);      // 3 (string converted to number)
+console.log("5" * "2");    // 10 (strings converted to numbers)
+console.log(true + 1);     // 2 (true is converted to 1)
+console.log(false + 1);    // 1 (false is converted to 0)</code></pre>
+          </div>
+        </div>
+
+        <div class="code-demo">
+          <h3>Try It Yourself</h3>
+          <p>Let's explore various data types and type conversions:</p>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

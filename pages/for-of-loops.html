@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For...of Loops - JavaScript Concepts Tutorial</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+      </nav>
+
+      <main class="content">
+        <h2>For...of Loops</h2>
+
+        <div class="concept">
+          <p>
+            The <code>for...of</code> statement was introduced in ES6 and
+            creates a loop iterating over iterable objects like arrays, strings,
+            maps, sets, and more.
+          </p>
+
+          <h3>Basic Syntax</h3>
+          <pre><code>for (const element of iterable) {
+  // code to execute for each element
+}</code></pre>
+
+          <h3>Example with Arrays</h3>
+          <pre><code>const fruits = ['apple', 'banana', 'orange'];
+
+for (const fruit of fruits) {
+  console.log(fruit);
+}
+// Output:
+// apple
+// banana
+// orange</code></pre>
+
+          <h3>Example with Strings</h3>
+          <pre><code>const text = 'Hello';
+
+for (const char of text) {
+  console.log(char);
+}
+// Output:
+// H
+// e
+// l
+// l
+// o</code></pre>
+
+          <h3>Example with Maps</h3>
+          <pre><code>const map = new Map([
+  ['name', 'John'],
+  ['age', 30]
+]);
+
+for (const [key, value] of map) {
+  console.log(`${key}: ${value}`);
+}
+// Output:
+// name: John
+// age: 30</code></pre>
+
+          <h3>For...of vs. For...in</h3>
+          <p>
+            <code>for...of</code> iterates over the values in an iterable.
+            <code>for...in</code> iterates over the enumerable property names of
+            an object.
+          </p>
+          <pre><code>const arr = ['a', 'b', 'c'];
+
+// for...of gets values
+for (const value of arr) {
+  console.log(value); // 'a', 'b', 'c'
+}
+
+// for...in gets indices/keys
+for (const key in arr) {
+  console.log(key); // '0', '1', '2'
+}</code></pre>
+
+          <h3>Benefits of For...of Loops</h3>
+          <ul>
+            <li>Cleaner syntax than traditional for loops</li>
+            <li>Works with any iterable object</li>
+            <li>Doesn't need index counters</li>
+            <li>Can use with break, continue, and return statements</li>
+          </ul>
+        </div>
+
+        <div class="tryit">
+          <h3>Try it yourself</h3>
+          <p>Open your browser console (F12) and try these examples:</p>
+          <pre><code>// Iterate over array
+const numbers = [1, 2, 3, 4, 5];
+for (const num of numbers) {
+  console.log(num * 2);
+}
+
+// Iterate with destructuring
+const people = [
+  { name: 'Alice', age: 25 },
+  { name: 'Bob', age: 30 }
+];
+for (const {name, age} of people) {
+  console.log(`${name} is ${age} years old`);
+}</code></pre>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

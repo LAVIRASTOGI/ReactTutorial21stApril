@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generators - JavaScript Concepts Tutorial</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="import-export.html">Import Export</a></li>
+          <li><a href="datatypes.html">Datatypes in JS</a></li>
+          <li><a href="variables.html">Let/const/var</a></li>
+          <li><a href="operators.html">Operators</a></li>
+          <li><a href="functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="objects.html">Objects</a></li>
+          <li><a href="arrays.html">Array Methods</a></li>
+          <li><a href="destructuring.html">Destructuring</a></li>
+          <li><a href="references.html">Reference and Primitive Values</a></li>
+          <li><a href="spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="classes.html">Classes</a></li>
+          <li><a href="template-literals.html">Template Literals</a></li>
+          <li><a href="default-parameters.html">Default Parameters</a></li>
+          <li><a href="promises.html">Promises</a></li>
+          <li><a href="map-set.html">Map and Set</a></li>
+          <li><a href="for-of-loops.html">For...of Loops</a></li>
+          <li><a href="generators.html">Generators</a></li>
+          <li><a href="symbols.html">Symbols</a></li>
+          <li><a href="proxies.html">Proxies</a></li>
+          <li><a href="../index.html">Back to Home</a></li>
+        </ul>
+      </nav>
+
+      <main class="content">
+        <h2>Generators</h2>
+
+        <div class="concept">
+          <p>
+            Generators are a special type of function introduced in ES6 that can
+            be paused and resumed, allowing for more controlled, on-demand
+            iteration through values.
+          </p>
+
+          <h3>Basic Syntax</h3>
+          <p>
+            Generator functions are defined using the
+            <code>function*</code> syntax and use the <code>yield</code> keyword
+            to pause and return values.
+          </p>
+          <pre><code>function* generatorFunction() {
+  yield 'Value 1';
+  yield 'Value 2';
+  yield 'Value 3';
+}</code></pre>
+
+          <h3>Using a Generator</h3>
+          <pre><code>// Create a generator object
+const generator = generatorFunction();
+
+console.log(generator.next()); // { value: 'Value 1', done: false }
+console.log(generator.next()); // { value: 'Value 2', done: false }
+console.log(generator.next()); // { value: 'Value 3', done: false }
+console.log(generator.next()); // { value: undefined, done: true }</code></pre>
+
+          <h3>Iterating with For...of</h3>
+          <pre><code>function* countToFive() {
+  for (let i = 1; i <= 5; i++) {
+    yield i;
+  }
+}
+
+for (const num of countToFive()) {
+  console.log(num);
+}
+// Output:
+// 1
+// 2
+// 3
+// 4
+// 5</code></pre>
+
+          <h3>Passing Values to Generators</h3>
+          <p>
+            Generators can receive values using the
+            <code>next(value)</code> method.
+          </p>
+          <pre><code>function* conversation() {
+  const name = yield 'What is your name?';
+  const hobby = yield `Nice to meet you, ${name}! What's your hobby?`;
+  yield `${hobby} sounds fun, ${name}!`;
+}
+
+const talk = conversation();
+console.log(talk.next().value);        // 'What is your name?'
+console.log(talk.next('John').value);  // 'Nice to meet you, John! What's your hobby?'
+console.log(talk.next('Coding').value); // 'Coding sounds fun, John!'</code></pre>
+
+          <h3>Infinite Generators</h3>
+          <pre><code>function* infiniteSequence() {
+  let i = 0;
+  while (true) {
+    yield i++;
+  }
+}
+
+const numbers = infiniteSequence();
+console.log(numbers.next().value); // 0
+console.log(numbers.next().value); // 1
+console.log(numbers.next().value); // 2
+// This could continue indefinitely</code></pre>
+
+          <h3>Generator Delegation</h3>
+          <p>
+            You can delegate to another generator using <code>yield*</code>.
+          </p>
+          <pre><code>function* gen1() {
+  yield 1;
+  yield 2;
+}
+
+function* gen2() {
+  yield* gen1();
+  yield 3;
+  yield 4;
+}
+
+for (const value of gen2()) {
+  console.log(value);
+}
+// Output:
+// 1
+// 2
+// 3
+// 4</code></pre>
+
+          <h3>Error Handling</h3>
+          <pre><code>function* errorHandlingGenerator() {
+  try {
+    yield 1;
+    yield 2;
+    yield 3;
+  } catch (error) {
+    console.log('Error caught:', error);
+    yield 'Error handled';
+  }
+}
+
+const gen = errorHandlingGenerator();
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.throw('Something went wrong').value); // Logs "Error caught: Something went wrong" and returns "Error handled"</code></pre>
+        </div>
+
+        <div class="tryit">
+          <h3>Try it yourself</h3>
+          <p>Open your browser console (F12) and try these examples:</p>
+          <pre><code>// Fibonacci sequence generator
+function* fibonacci() {
+  let a = 0, b = 1;
+  while (true) {
+    yield a;
+    [a, b] = [b, a + b];
+  }
+}
+
+const fib = fibonacci();
+for (let i = 0; i < 10; i++) {
+  console.log(fib.next().value);
+}</code></pre>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

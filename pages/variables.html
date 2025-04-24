@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Variables (let/const/var) - JavaScript Concepts</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="concept-page">
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+        <div class="back-link">
+          <a href="../index.html">← Back to Home</a>
+        </div>
+      </nav>
+
+      <main class="content">
+        <h2>JavaScript Variables: let, const, var</h2>
+
+        <div class="description">
+          <p>
+            JavaScript provides three ways to declare variables:
+            <code>var</code>, <code>let</code>, and <code>const</code>. Each has
+            different scoping rules and behaviors that affect how they can be
+            used in your code.
+          </p>
+        </div>
+
+        <div class="example">
+          <h3>var</h3>
+          <p>
+            <code>var</code> is the oldest way to declare variables in
+            JavaScript. It has function scope (or global scope if declared
+            outside a function).
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Function scope example
+function varExample() {
+  var x = 10;
+  if (true) {
+    var x = 20;  // Same variable!
+    console.log(x); // 20
+  }
+  console.log(x); // 20 - the value was changed
+}
+
+// Hoisting example
+console.log(y); // undefined (not an error)
+var y = 5;      // Declaration is hoisted, but not the initialization</code></pre>
+          </div>
+
+          <p><strong>Key characteristics of var:</strong></p>
+          <ul>
+            <li>Function scoped (or global if outside a function)</li>
+            <li>Can be redeclared without error</li>
+            <li>
+              Hoisted to the top of its scope (declaration only, not
+              initialization)
+            </li>
+            <li>Can be updated</li>
+          </ul>
+        </div>
+
+        <div class="example">
+          <h3>let</h3>
+          <p>
+            <code>let</code> was introduced in ES6 (2015) and provides block
+            scope for variables.
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Block scope example
+function letExample() {
+  let x = 10;
+  if (true) {
+    let x = 20;  // Different variable (block scoped)
+    console.log(x); // 20
+  }
+  console.log(x); // 10 - the original value is unchanged
+}
+
+// Temporal Dead Zone example
+// console.log(z); // ReferenceError: Cannot access 'z' before initialization
+let z = 5;
+
+// Can be updated
+let count = 1;
+count = 2; // Valid</code></pre>
+          </div>
+
+          <p><strong>Key characteristics of let:</strong></p>
+          <ul>
+            <li>Block scoped (available only within the block it's defined)</li>
+            <li>Cannot be redeclared in the same scope</li>
+            <li>Hoisted but not initialized (Temporal Dead Zone)</li>
+            <li>Can be updated</li>
+          </ul>
+        </div>
+
+        <div class="example">
+          <h3>const</h3>
+          <p>
+            <code>const</code> also introduced in ES6, creates block-scoped
+            constants that cannot be reassigned.
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Basic const usage
+const PI = 3.14159;
+// PI = 3.14; // TypeError: Assignment to constant variable
+
+// Object mutability
+const person = { name: "Alice" };
+person.name = "Bob"; // Valid - the object can be mutated
+// person = { name: "Charlie" }; // TypeError - reassignment is not allowed
+
+// Array mutability
+const numbers = [1, 2, 3];
+numbers.push(4); // Valid - we can modify the array
+// numbers = [5, 6, 7]; // TypeError - reassignment is not allowed</code></pre>
+          </div>
+
+          <p><strong>Key characteristics of const:</strong></p>
+          <ul>
+            <li>Block scoped (like let)</li>
+            <li>Cannot be redeclared in the same scope</li>
+            <li>Must be initialized when declared</li>
+            <li>Cannot be reassigned</li>
+            <li>
+              For objects and arrays, the contents can be modified (mutable)
+            </li>
+          </ul>
+        </div>
+
+        <div class="example">
+          <h3>Scope Comparison</h3>
+
+          <div class="code-container">
+            <pre><code>function scopeExample() {
+  // Global scope
+  var globalVar = "I'm global (within function)";
+  let globalLet = "I'm also global (within function)";
+  
+  // Block scope
+  {
+    var blockVar = "I'm still accessible outside the block";
+    let blockLet = "I'm only accessible within this block";
+    const blockConst = "I'm also only accessible within this block";
+    
+    console.log(globalVar);    // Accessible
+    console.log(globalLet);    // Accessible
+    console.log(blockVar);     // Accessible
+    console.log(blockLet);     // Accessible
+    console.log(blockConst);   // Accessible
+  }
+  
+  console.log(globalVar);    // Accessible
+  console.log(globalLet);    // Accessible
+  console.log(blockVar);     // Accessible
+  // console.log(blockLet);   // ReferenceError
+  // console.log(blockConst); // ReferenceError
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Best Practices</h3>
+          <ul>
+            <li>Avoid using <code>var</code> in modern JavaScript code</li>
+            <li>
+              Use <code>const</code> by default (for values that won't be
+              reassigned)
+            </li>
+            <li>Use <code>let</code> when you need to reassign values</li>
+            <li>Declare variables at the top of their scope for clarity</li>
+            <li>Use descriptive variable names</li>
+          </ul>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

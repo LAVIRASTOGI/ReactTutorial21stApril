@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proxies - JavaScript Concepts Tutorial</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+      </nav>
+
+      <main class="content">
+        <h2>Proxies</h2>
+
+        <div class="concept">
+          <p>
+            Proxies, introduced in ES6, provide a way to create custom behaviors
+            for fundamental operations on objects (like property lookup,
+            assignment, enumeration, function invocation, etc.).
+          </p>
+
+          <h3>Basic Syntax</h3>
+          <pre><code>const target = {}; // The original object to proxy
+const handler = {}; // The handler defines custom behaviors
+
+// Create a proxy for the target object
+const proxy = new Proxy(target, handler);</code></pre>
+
+          <h3>Handler Traps</h3>
+          <p>
+            Handlers can define "traps" for different operations. If a trap is
+            not defined, the default behavior is used.
+          </p>
+
+          <h3>Common Traps</h3>
+          <ul>
+            <li><code>get</code> - Intercepts property access</li>
+            <li><code>set</code> - Intercepts property assignment</li>
+            <li><code>has</code> - Intercepts the <code>in</code> operator</li>
+            <li>
+              <code>deleteProperty</code> - Intercepts the
+              <code>delete</code> operator
+            </li>
+            <li><code>apply</code> - Intercepts function calls</li>
+            <li>
+              <code>construct</code> - Intercepts <code>new</code> operator
+            </li>
+            <li>
+              <code>ownKeys</code> - Intercepts <code>Object.keys</code>,
+              <code>Object.getOwnPropertyNames</code>, etc.
+            </li>
+          </ul>
+
+          <h3>Get Trap Example</h3>
+          <pre><code>const person = {
+  name: 'John',
+  age: 30
+};
+
+const handler = {
+  get: function(target, prop, receiver) {
+    if (prop in target) {
+      return target[prop];
+    } else {
+      return `Property "${prop}" does not exist`;
+    }
+  }
+};
+
+const proxyPerson = new Proxy(person, handler);
+
+console.log(proxyPerson.name); // 'John'
+console.log(proxyPerson.age); // 30
+console.log(proxyPerson.job); // 'Property "job" does not exist'</code></pre>
+
+          <h3>Set Trap Example</h3>
+          <pre><code>const validator = {
+  set: function(obj, prop, value) {
+    if (prop === 'age') {
+      if (!Number.isInteger(value)) {
+        throw new TypeError('Age must be an integer');
+      }
+      if (value < 0 || value > 120) {
+        throw new RangeError('Age must be between 0 and 120');
+      }
+    }
+    
+    // The default behavior to store the value
+    obj[prop] = value;
+    
+    // Indicate success
+    return true;
+  }
+};
+
+const person = {
+  name: 'John'
+};
+
+const validatedPerson = new Proxy(person, validator);
+
+validatedPerson.name = 'Jane'; // Works fine
+validatedPerson.age = 30; // Works fine
+// validatedPerson.age = -5; // Throws RangeError
+// validatedPerson.age = 'thirty'; // Throws TypeError</code></pre>
+
+          <h3>Apply Trap Example</h3>
+          <pre><code>function sum(a, b) {
+  return a + b;
+}
+
+const handler = {
+  apply: function(target, thisArg, argumentsList) {
+    console.log(`Calling function with arguments: ${argumentsList}`);
+    // Can modify arguments or behavior
+    return target.apply(thisArg, argumentsList);
+  }
+};
+
+const proxiedSum = new Proxy(sum, handler);
+
+console.log(proxiedSum(1, 2)); 
+// Logs: "Calling function with arguments: 1,2"
+// Returns: 3</code></pre>
+
+          <h3>Construct Trap Example</h3>
+          <pre><code>class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+const handler = {
+  construct(target, args) {
+    console.log(`Creating new ${target.name} with args: ${args}`);
+    // You can return a different object if needed
+    return new target(...args);
+  }
+};
+
+const PersonProxy = new Proxy(Person, handler);
+
+const person = new PersonProxy('John', 30);
+// Logs: "Creating new Person with args: John,30"</code></pre>
+
+          <h3>Use Cases for Proxies</h3>
+          <ul>
+            <li>Data validation</li>
+            <li>Property default values</li>
+            <li>Logging property access</li>
+            <li>Implementing computed properties</li>
+            <li>Access control</li>
+            <li>Creating revocable references</li>
+          </ul>
+
+          <h3>Revocable Proxies</h3>
+          <pre><code>const target = { name: 'target' };
+const { proxy, revoke } = Proxy.revocable(target, {});
+
+console.log(proxy.name); // 'target'
+
+// Later, revoke access to the proxy
+revoke();
+
+// After revocation, any operation on the proxy will throw
+// console.log(proxy.name); // TypeError: Cannot perform 'get' on a proxy that has been revoked</code></pre>
+        </div>
+
+        <div class="tryit">
+          <h3>Try it yourself</h3>
+          <p>Open your browser console (F12) and try these examples:</p>
+          <pre><code>// Property tracking proxy
+const trackChanges = (obj) => {
+  const handler = {
+    set(target, prop, value) {
+      console.log(`Setting ${prop} to ${value}`);
+      target[prop] = value;
+      return true;
+    },
+    get(target, prop) {
+      console.log(`Getting value of ${prop}`);
+      return target[prop];
+    }
+  };
+  
+  return new Proxy(obj, handler);
+};
+
+const user = trackChanges({ name: 'John' });
+user.name = 'Jane'; // Logs: "Setting name to Jane"
+console.log(user.name); // Logs: "Getting value of name", then "Jane"</code></pre>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

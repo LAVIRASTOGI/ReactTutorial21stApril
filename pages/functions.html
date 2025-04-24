@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions/Arrow Functions - JavaScript Concepts</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="concept-page">
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+        <div class="back-link">
+          <a href="../index.html">← Back to Home</a>
+        </div>
+      </nav>
+
+      <main class="content">
+        <h2>Functions in JavaScript</h2>
+
+        <div class="description">
+          <p>
+            Functions are one of the fundamental building blocks in JavaScript.
+            A function is a reusable block of code designed to perform a
+            particular task.
+          </p>
+          <p>
+            JavaScript offers several ways to create and work with functions,
+            including traditional function declarations, function expressions,
+            and arrow functions (ES6).
+          </p>
+        </div>
+
+        <div class="example">
+          <h3>Function Declaration</h3>
+          <p>The most common way to define a function:</p>
+
+          <div class="code-container">
+            <pre><code>// Function declaration
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+// Function call
+console.log(greet('Alice')); // "Hello, Alice!"
+
+// Function declarations are hoisted
+console.log(subtract(10, 5)); // 5 (works before declaration)
+
+function subtract(a, b) {
+  return a - b;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Function Expression</h3>
+          <p>Assigning a function to a variable:</p>
+
+          <div class="code-container">
+            <pre><code>// Function expression (anonymous function)
+const add = function(a, b) {
+  return a + b;
+};
+
+console.log(add(5, 3)); // 8
+
+// Named function expression
+const multiply = function multiplyFunc(a, b) {
+  return a * b;
+};
+
+console.log(multiply(4, 3)); // 12
+
+// Function expressions are not hoisted
+// console.log(divide(10, 2)); // Error: divide is not a function
+
+const divide = function(a, b) {
+  return a / b;
+};</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Arrow Functions (ES6)</h3>
+          <p>A shorter syntax introduced in ES6:</p>
+
+          <div class="code-container">
+            <pre><code>// Basic arrow function
+const square = (num) => {
+  return num * num;
+};
+
+console.log(square(5)); // 25
+
+// Simplified arrow function (implicit return)
+const double = num => num * 2;
+
+console.log(double(4)); // 8
+
+// Arrow function with multiple parameters
+const sum = (a, b, c) => a + b + c;
+
+console.log(sum(1, 2, 3)); // 6
+
+// Arrow function with no parameters
+const getRandomNumber = () => Math.random();
+
+console.log(getRandomNumber()); // Random number between 0 and 1</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Differences Between Regular and Arrow Functions</h3>
+          <p>
+            Arrow functions differ from traditional functions in several
+            important ways:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// 1. 'this' binding
+// Regular function: 'this' is dynamic and depends on how the function is called
+const person = {
+  name: 'John',
+  regularFunc: function() {
+    console.log(this.name); // 'John' - 'this' refers to the person object
+  },
+  arrowFunc: () => {
+    console.log(this.name); // undefined - 'this' is inherited from the surrounding scope
+  }
+};
+
+// 2. No 'arguments' object in arrow functions
+function regularFunc() {
+  console.log(arguments); // [Arguments] { '0': 1, '1': 2, '2': 3 }
+}
+
+const arrowFunc = () => {
+  // console.log(arguments); // Error: arguments is not defined
+};
+
+// 3. Cannot be used as constructors
+function Person(name) {
+  this.name = name;
+}
+const john = new Person('John');
+
+// const ArrowPerson = (name) => { this.name = name; };
+// const alice = new ArrowPerson('Alice'); // Error: ArrowPerson is not a constructor
+
+// 4. No prototype property
+console.log(Person.prototype); // {} (exists)
+// console.log(arrowFunc.prototype); // undefined</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Function Parameters</h3>
+          <p>JavaScript functions can handle parameters in various ways:</p>
+
+          <div class="code-container">
+            <pre><code>// Default parameters (ES6)
+function greetWithDefault(name = 'Guest') {
+  return `Hello, ${name}!`;
+}
+
+console.log(greetWithDefault()); // "Hello, Guest!"
+console.log(greetWithDefault('Jane')); // "Hello, Jane!"
+
+// Rest parameters (ES6)
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+
+console.log(sum(1, 2, 3, 4, 5)); // 15
+
+// Parameter destructuring (ES6)
+function printPersonInfo({ name, age, city = 'Unknown' }) {
+  console.log(`${name} is ${age} years old and lives in ${city}.`);
+}
+
+printPersonInfo({ name: 'Alice', age: 30 }); // "Alice is 30 years old and lives in Unknown."
+printPersonInfo({ name: 'Bob', age: 25, city: 'New York' }); // "Bob is 25 years old and lives in New York."</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Immediately Invoked Function Expressions (IIFE)</h3>
+          <p>Functions that run as soon as they are defined:</p>
+
+          <div class="code-container">
+            <pre><code>// IIFE with function declaration
+(function() {
+  const secret = 'I am private';
+  console.log(secret); // "I am private"
+})();
+
+// IIFE with arrow function
+(() => {
+  const anotherSecret = 'Also private';
+  console.log(anotherSecret); // "Also private"
+})();
+
+// IIFE with parameters
+((name) => {
+  console.log(`Hello, ${name}!`); // "Hello, World!"
+})('World');</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Higher-Order Functions</h3>
+          <p>Functions that accept or return other functions:</p>
+
+          <div class="code-container">
+            <pre><code>// Function that returns a function
+function createMultiplier(factor) {
+  return function(number) {
+    return number * factor;
+  };
+}
+
+const double = createMultiplier(2);
+const triple = createMultiplier(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+
+// Function that accepts a function as an argument
+function applyOperation(a, b, operation) {
+  return operation(a, b);
+}
+
+const add = (x, y) => x + y;
+const subtract = (x, y) => x - y;
+
+console.log(applyOperation(10, 5, add)); // 15
+console.log(applyOperation(10, 5, subtract)); // 5</code></pre>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+    <script src="../lecture3.js"></script>
+  </body>
+</html>

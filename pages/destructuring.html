@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destructuring - JavaScript Concepts</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="concept-page">
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+        <div class="back-link">
+          <a href="../index.html">← Back to Home</a>
+        </div>
+      </nav>
+
+      <main class="content">
+        <h2>Destructuring in JavaScript</h2>
+
+        <div class="description">
+          <p>
+            Destructuring is a convenient way to extract multiple values from
+            data stored in objects and arrays. It allows for easier and more
+            readable variable declarations and assignments.
+          </p>
+          <p>
+            Introduced in ES6 (2015), destructuring simplifies working with
+            complex data structures and makes code more concise.
+          </p>
+        </div>
+
+        <div class="example">
+          <h3>Object Destructuring</h3>
+          <p>Extracting properties from objects into variables:</p>
+
+          <div class="code-container">
+            <pre><code>// Basic object destructuring
+const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+  age: 30,
+  profession: 'Developer'
+};
+
+// Extract values into variables with the same name as the properties
+const { firstName, lastName } = person;
+console.log(firstName); // 'John'
+console.log(lastName);  // 'Doe'
+
+// Destructuring with new variable names
+const { firstName: fName, lastName: lName } = person;
+console.log(fName); // 'John'
+console.log(lName); // 'Doe'
+
+// Destructuring with default values (used if property is undefined)
+const { age, city = 'Unknown' } = person;
+console.log(age);  // 30
+console.log(city); // 'Unknown' (default value since it doesn't exist in the person object)</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Nested Object Destructuring</h3>
+          <p>Extracting properties from nested objects:</p>
+
+          <div class="code-container">
+            <pre><code>// Nested object destructuring
+const user = {
+  id: 1,
+  name: 'Alice',
+  address: {
+    street: '123 Main St',
+    city: 'Wonderland',
+    country: 'Fantasyland'
+  },
+  contact: {
+    email: 'alice@example.com',
+    phone: {
+      home: '555-1234',
+      work: '555-5678'
+    }
+  }
+};
+
+// Extracting nested properties
+const { address: { city, country } } = user;
+console.log(city);    // 'Wonderland'
+console.log(country); // 'Fantasyland'
+
+// Deep nesting with renaming
+const { 
+  contact: { 
+    phone: { 
+      home: homePhone, 
+      work: workPhone 
+    } 
+  } 
+} = user;
+console.log(homePhone); // '555-1234'
+console.log(workPhone); // '555-5678'</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Array Destructuring</h3>
+          <p>Extracting elements from arrays into variables:</p>
+
+          <div class="code-container">
+            <pre><code>// Basic array destructuring
+const colors = ['red', 'green', 'blue', 'yellow', 'purple'];
+
+// Extract values by position
+const [firstColor, secondColor] = colors;
+console.log(firstColor);  // 'red'
+console.log(secondColor); // 'green'
+
+// Skip elements using commas
+const [, , thirdColor] = colors;
+console.log(thirdColor); // 'blue'
+
+// Collect remaining elements using rest syntax
+const [primary, secondary, ...otherColors] = colors;
+console.log(primary);      // 'red'
+console.log(secondary);    // 'green'
+console.log(otherColors);  // ['blue', 'yellow', 'purple']
+
+// Default values in array destructuring
+const numbers = [1, 2];
+const [a, b, c = 3] = numbers;
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 3 (default value)</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Swapping Variables</h3>
+          <p>
+            Using destructuring to swap variables without a temporary variable:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Swapping variables
+let x = 1;
+let y = 2;
+
+// Before ES6 (using a temporary variable)
+// let temp = x;
+// x = y;
+// y = temp;
+
+// With destructuring
+[x, y] = [y, x];
+
+console.log(x); // 2
+console.log(y); // 1</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Destructuring Function Parameters</h3>
+          <p>
+            Using destructuring in function parameters for more readable code:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Object destructuring in function parameters
+function displayUserInfo({ name, age, email = 'No email provided' }) {
+  console.log(`Name: ${name}, Age: ${age}, Email: ${email}`);
+}
+
+const user1 = {
+  name: 'Alice',
+  age: 28,
+  email: 'alice@example.com'
+};
+
+const user2 = {
+  name: 'Bob',
+  age: 32
+  // No email property
+};
+
+displayUserInfo(user1); // "Name: Alice, Age: 28, Email: alice@example.com"
+displayUserInfo(user2); // "Name: Bob, Age: 32, Email: No email provided"
+
+// Array destructuring in function parameters
+function getCoordinates() {
+  return [10, 20];
+}
+
+function displayCoordinates([x, y]) {
+  console.log(`X: ${x}, Y: ${y}`);
+}
+
+displayCoordinates(getCoordinates()); // "X: 10, Y: 20"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Destructuring Returned Values</h3>
+          <p>
+            Using destructuring with functions that return objects or arrays:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Function that returns an object
+function getUserData() {
+  return {
+    id: 123,
+    username: 'jsdev',
+    role: 'admin',
+    createdAt: '2022-01-01'
+  };
+}
+
+// Destructuring the returned object
+const { id, username, role } = getUserData();
+console.log(id);       // 123
+console.log(username); // 'jsdev'
+console.log(role);     // 'admin'
+
+// Function that returns an array
+function getMinMax(numbers) {
+  return [Math.min(...numbers), Math.max(...numbers)];
+}
+
+// Destructuring the returned array
+const [min, max] = getMinMax([3, 1, 7, 5, 9]);
+console.log(min); // 1
+console.log(max); // 9</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Combining with Rest/Spread Operators</h3>
+          <p>Destructuring works well with rest/spread operators:</p>
+
+          <div class="code-container">
+            <pre><code>// Combining object destructuring with rest
+const fullProduct = {
+  id: 'P123',
+  name: 'Laptop',
+  price: 999,
+  brand: 'TechCo',
+  inStock: true,
+  specs: {
+    cpu: 'i7',
+    ram: '16GB',
+    storage: '512GB'
+  }
+};
+
+// Extract some properties, collect the rest
+const { id, name, ...productDetails } = fullProduct;
+console.log(id);   // 'P123'
+console.log(name); // 'Laptop'
+console.log(productDetails);
+// { price: 999, brand: 'TechCo', inStock: true, specs: {...} }
+
+// Combining array destructuring with rest
+const scores = [92, 88, 76, 95, 84];
+const [highest, secondHighest, ...otherScores] = scores.sort((a, b) => b - a);
+console.log(highest);       // 95
+console.log(secondHighest); // 92
+console.log(otherScores);   // [88, 84, 76]</code></pre>
+          </div>
+        </div>
+
+        <div class="code-demo">
+          <h3>Try It Yourself</h3>
+          <p>Experiment with destructuring:</p>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>

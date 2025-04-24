@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classes - JavaScript Concepts</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="concept-page">
+    <header>
+      <h1>JavaScript Concepts Tutorial</h1>
+    </header>
+
+    <div class="container">
+      <nav class="sidebar">
+        <h2>Topics</h2>
+        <ul>
+          <li><a href="pages/import-export.html">Import Export</a></li>
+          <li><a href="pages/datatypes.html">Datatypes in JS</a></li>
+          <li><a href="pages/variables.html">Let/const/var</a></li>
+          <li><a href="pages/operators.html">Operators</a></li>
+          <li><a href="pages/functions.html">Functions/Arrow Functions</a></li>
+          <li><a href="pages/objects.html">Objects</a></li>
+          <li><a href="pages/arrays.html">Array Methods</a></li>
+          <li><a href="pages/destructuring.html">Destructuring</a></li>
+          <li>
+            <a href="pages/references.html">Reference and Primitive Values</a>
+          </li>
+          <li><a href="pages/spread-rest.html">Spread and Rest Operator</a></li>
+          <li><a href="pages/classes.html">Classes</a></li>
+          <li><a href="pages/template-literals.html">Template Literals</a></li>
+          <li>
+            <a href="pages/default-parameters.html">Default Parameters</a>
+          </li>
+          <li><a href="pages/promises.html">Promises</a></li>
+          <li><a href="pages/map-set.html">Map and Set</a></li>
+          <li><a href="pages/for-of-loops.html">For...of Loops</a></li>
+          <li><a href="pages/generators.html">Generators</a></li>
+          <li><a href="pages/symbols.html">Symbols</a></li>
+          <li><a href="pages/proxies.html">Proxies</a></li>
+        </ul>
+        <div class="back-link">
+          <a href="../index.html">← Back to Home</a>
+        </div>
+      </nav>
+
+      <main class="content">
+        <h2>Classes in JavaScript</h2>
+
+        <div class="description">
+          <p>
+            JavaScript classes, introduced in ECMAScript 2015 (ES6), provide a
+            cleaner and more elegant syntax for creating objects and
+            implementing inheritance. While JavaScript remains prototype-based,
+            classes offer a more familiar syntax for developers coming from
+            class-based languages.
+          </p>
+          <p>
+            Under the hood, JavaScript classes are primarily syntactical sugar
+            over JavaScript's existing prototype-based inheritance. They provide
+            a much cleaner and easier-to-understand syntax for creating objects
+            and dealing with inheritance.
+          </p>
+        </div>
+
+        <div class="example">
+          <h3>Class Declaration and Basic Syntax</h3>
+          <p>The basic syntax for defining a class and creating instances:</p>
+
+          <div class="code-container">
+            <pre><code>// Class declaration
+class Person {
+  // Constructor method
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  
+  // Method definition
+  greet() {
+    return `Hello, my name is ${this.name} and I am ${this.age} years old`;
+  }
+}
+
+// Creating instances
+const person1 = new Person('Alice', 28);
+const person2 = new Person('Bob', 32);
+
+console.log(person1.greet()); // "Hello, my name is Alice and I am 28 years old"
+console.log(person2.greet()); // "Hello, my name is Bob and I am 32 years old"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Class Expression</h3>
+          <p>
+            Classes can also be defined using class expressions, similar to
+            function expressions:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Unnamed class expression
+const Animal = class {
+  constructor(name) {
+    this.name = name;
+  }
+  
+  speak() {
+    return `${this.name} makes a sound`;
+  }
+};
+
+// Named class expression
+const Vehicle = class VehicleClass {
+  constructor(type) {
+    this.type = type;
+  }
+  
+  getDescription() {
+    return `This is a ${this.type}`;
+  }
+};
+
+const dog = new Animal('Dog');
+console.log(dog.speak()); // "Dog makes a sound"
+
+const car = new Vehicle('car');
+console.log(car.getDescription()); // "This is a car"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Class Properties and Methods</h3>
+          <p>Classes support different types of properties and methods:</p>
+
+          <div class="code-container">
+            <pre><code>class Calculator {
+  // Class field (property)
+  pi = 3.14159;
+  
+  // Static property
+  static version = 'v1.0';
+  
+  // Constructor
+  constructor(precision = 2) {
+    this.precision = precision;
+  }
+  
+  // Instance method
+  add(a, b) {
+    return +(a + b).toFixed(this.precision);
+  }
+  
+  // Static method (called on the class itself, not instances)
+  static multiply(a, b) {
+    return a * b;
+  }
+  
+  // Getter method
+  get precisionValue() {
+    return this.precision;
+  }
+  
+  // Setter method
+  set precisionValue(value) {
+    if (value >= 0 && value <= 10) {
+      this.precision = value;
+    } else {
+      console.warn('Precision must be between 0 and 10');
+    }
+  }
+}
+
+const calc = new Calculator(3);
+
+console.log(calc.pi); // 3.14159
+console.log(calc.add(10.2345, 5.6789)); // 15.913 (rounded to 3 decimals)
+
+// Using getter and setter
+console.log(calc.precisionValue); // 3
+calc.precisionValue = 4;
+console.log(calc.precisionValue); // 4
+
+// Using static property and method
+console.log(Calculator.version); // "v1.0"
+console.log(Calculator.multiply(5, 3)); // 15</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Class Inheritance</h3>
+          <p>
+            Classes can inherit from other classes using the
+            <code>extends</code> keyword:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Parent class
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  
+  speak() {
+    return `${this.name} makes a sound`;
+  }
+  
+  eat() {
+    return `${this.name} is eating`;
+  }
+}
+
+// Child class inheriting from Animal
+class Dog extends Animal {
+  constructor(name, breed) {
+    // Call parent constructor with super()
+    super(name);
+    this.breed = breed;
+  }
+  
+  // Override parent's speak method
+  speak() {
+    return `${this.name} barks`;
+  }
+  
+  // Child-specific method
+  fetch() {
+    return `${this.name} is fetching`;
+  }
+}
+
+// Another child class
+class Cat extends Animal {
+  constructor(name, color) {
+    super(name);
+    this.color = color;
+  }
+  
+  speak() {
+    return `${this.name} meows`;
+  }
+  
+  purr() {
+    return `${this.name} is purring`;
+  }
+}
+
+const dog = new Dog('Rex', 'German Shepherd');
+console.log(dog.speak()); // "Rex barks"
+console.log(dog.eat());   // "Rex is eating" (inherited from Animal)
+console.log(dog.fetch()); // "Rex is fetching"
+
+const cat = new Cat('Whiskers', 'Tabby');
+console.log(cat.speak()); // "Whiskers meows"
+console.log(cat.eat());   // "Whiskers is eating" (inherited from Animal)
+console.log(cat.purr());  // "Whiskers is purring"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Using super()</h3>
+          <p>
+            The <code>super</code> keyword is used to call functions on an
+            object's parent:
+          </p>
+
+          <div class="code-container">
+            <pre><code>class Shape {
+  constructor(color) {
+    this.color = color;
+  }
+  
+  getInfo() {
+    return `A ${this.color} shape`;
+  }
+}
+
+class Circle extends Shape {
+  constructor(color, radius) {
+    // Must call super before using 'this'
+    super(color);
+    this.radius = radius;
+  }
+  
+  getInfo() {
+    // Call parent method and extend it
+    return `${super.getInfo()} with radius ${this.radius}`;
+  }
+  
+  getArea() {
+    return Math.PI * this.radius * this.radius;
+  }
+}
+
+const circle = new Circle('red', 5);
+console.log(circle.getInfo()); // "A red shape with radius 5"
+console.log(circle.getArea()); // 78.53981633974483</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Private Class Features</h3>
+          <p>
+            JavaScript now supports private class fields and methods (using the
+            # prefix), which are only accessible within the class:
+          </p>
+
+          <div class="code-container">
+            <pre><code>class BankAccount {
+  // Private field
+  #balance = 0;
+  
+  // Private method
+  #validateAmount(amount) {
+    return amount > 0 && typeof amount === 'number';
+  }
+  
+  constructor(owner, initialBalance = 0) {
+    this.owner = owner;
+    if (this.#validateAmount(initialBalance)) {
+      this.#balance = initialBalance;
+    }
+  }
+  
+  deposit(amount) {
+    if (this.#validateAmount(amount)) {
+      this.#balance += amount;
+      return true;
+    }
+    return false;
+  }
+  
+  withdraw(amount) {
+    if (this.#validateAmount(amount) && amount <= this.#balance) {
+      this.#balance -= amount;
+      return true;
+    }
+    return false;
+  }
+  
+  getBalance() {
+    return this.#balance;
+  }
+}
+
+const account = new BankAccount('John Doe', 1000);
+console.log(account.getBalance()); // 1000
+
+account.deposit(500);
+console.log(account.getBalance()); // 1500
+
+account.withdraw(200);
+console.log(account.getBalance()); // 1300
+
+// This would error since #balance is private
+// console.log(account.#balance);
+
+// This would also error since #validateAmount is private
+// account.#validateAmount(100);</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Abstract Base Classes</h3>
+          <p>
+            JavaScript doesn't have built-in abstract classes, but you can
+            implement similar behavior:
+          </p>
+
+          <div class="code-container">
+            <pre><code>class AbstractVehicle {
+  constructor() {
+    // Prevent direct instantiation of the abstract class
+    if (this.constructor === AbstractVehicle) {
+      throw new Error('Cannot instantiate abstract class');
+    }
+  }
+  
+  // Method that must be implemented by subclasses
+  startEngine() {
+    throw new Error('Method startEngine() must be implemented');
+  }
+  
+  // Common method across all vehicles
+  honk() {
+    return 'Beep beep!';
+  }
+}
+
+class Car extends AbstractVehicle {
+  constructor(make, model) {
+    super();
+    this.make = make;
+    this.model = model;
+  }
+  
+  startEngine() {
+    return `${this.make} ${this.model}'s engine started`;
+  }
+}
+
+// This would throw error:
+// const vehicle = new AbstractVehicle();
+
+const car = new Car('Toyota', 'Corolla');
+console.log(car.startEngine()); // "Toyota Corolla's engine started"
+console.log(car.honk());        // "Beep beep!"</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Mixins and Multiple Inheritance</h3>
+          <p>
+            JavaScript doesn't support multiple inheritance directly, but you
+            can use mixins:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Mixin for swimming capabilities
+const SwimMixin = {
+  swim() {
+    return `${this.name} is swimming`;
+  },
+  dive() {
+    return `${this.name} is diving`;
+  }
+};
+
+// Mixin for flying capabilities
+const FlyMixin = {
+  fly() {
+    return `${this.name} is flying`;
+  },
+  land() {
+    return `${this.name} is landing`;
+  }
+};
+
+// Base Animal class
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  
+  eat() {
+    return `${this.name} is eating`;
+  }
+}
+
+// Duck class that uses both mixins
+class Duck extends Animal {
+  constructor(name) {
+    super(name);
+  }
+  
+  quack() {
+    return `${this.name} quacks`;
+  }
+}
+
+// Apply mixins
+Object.assign(Duck.prototype, SwimMixin, FlyMixin);
+
+const duck = new Duck('Donald');
+console.log(duck.eat());   // "Donald is eating"
+console.log(duck.quack()); // "Donald quacks"
+console.log(duck.swim());  // "Donald is swimming" (from SwimMixin)
+console.log(duck.fly());   // "Donald is flying" (from FlyMixin)</code></pre>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Classes vs. Constructor Functions</h3>
+          <p>
+            Classes provide syntactic sugar over the constructor function
+            pattern. Here's a comparison:
+          </p>
+
+          <div class="code-container">
+            <pre><code>// Traditional constructor function approach
+function PersonConstructor(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+PersonConstructor.prototype.greet = function() {
+  return `Hi, I'm ${this.name}`;
+};
+
+// Same functionality using a class
+class PersonClass {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  
+  greet() {
+    return `Hi, I'm ${this.name}`;
+  }
+}
+
+const person1 = new PersonConstructor('Alice', 30);
+const person2 = new PersonClass('Bob', 25);
+
+console.log(person1.greet()); // "Hi, I'm Alice"
+console.log(person2.greet()); // "Hi, I'm Bob"
+
+// Both are functions under the hood
+console.log(typeof PersonConstructor); // "function"
+console.log(typeof PersonClass);       // "function"
+
+// Both create objects with the prototype chain
+console.log(person1 instanceof PersonConstructor); // true
+console.log(person2 instanceof PersonClass);       // true</code></pre>
+          </div>
+        </div>
+
+        <div class="code-demo">
+          <h3>Try It Yourself</h3>
+          <p>Experiment with JavaScript classes:</p>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 JavaScript Concepts Tutorial</p>
+    </footer>
+  </body>
+</html>
