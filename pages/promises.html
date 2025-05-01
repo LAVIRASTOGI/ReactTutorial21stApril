@@ -374,10 +374,6 @@ fakeApiCall()
 
 // Try modifying the code and experiment with async/await too!</textarea
             >
-            <div class="button-container">
-              <button id="run-button">Run</button>
-            </div>
-            <div id="output">Results will appear here...</div>
           </div>
         </section>
       </main>
@@ -386,78 +382,6 @@ fakeApiCall()
     <footer>
       <p>&copy; 2023 JavaScript Concepts Tutorial</p>
     </footer>
-
-    <script>
-      document
-        .getElementById("run-button")
-        .addEventListener("click", function () {
-          const code = document.getElementById("code-editor").value;
-          const outputDiv = document.getElementById("output");
-
-          // Clear previous output
-          outputDiv.innerHTML = "";
-
-          // Create a new output capture system
-          const originalConsoleLog = console.log;
-          const originalConsoleError = console.error;
-
-          try {
-            // Redirect console.log and console.error to our output div
-            console.log = function () {
-              const args = Array.from(arguments);
-              const message = args
-                .map((arg) => {
-                  if (typeof arg === "object") {
-                    return JSON.stringify(arg, null, 2);
-                  }
-                  return String(arg);
-                })
-                .join(" ");
-
-              const logLine = document.createElement("div");
-              logLine.textContent = message;
-              outputDiv.appendChild(logLine);
-            };
-
-            console.error = function () {
-              const args = Array.from(arguments);
-              const message = args
-                .map((arg) => {
-                  if (typeof arg === "object") {
-                    return JSON.stringify(arg, null, 2);
-                  }
-                  return String(arg);
-                })
-                .join(" ");
-
-              const errorLine = document.createElement("div");
-              errorLine.textContent = message;
-              errorLine.className = "error";
-              outputDiv.appendChild(errorLine);
-            };
-
-            // Execute the code
-            const asyncWrapper = `
-            (async function() {
-              try {
-                ${code}
-              } catch (error) {
-                console.error('Execution error:', error.message);
-              }
-            })();
-          `;
-            eval(asyncWrapper);
-          } catch (error) {
-            outputDiv.innerHTML += `<div class="error">Error evaluating code: ${error.message}</div>`;
-          } finally {
-            // Restore original console methods after a short delay
-            // (to catch any async console logs)
-            setTimeout(() => {
-              console.log = originalConsoleLog;
-              console.error = originalConsoleError;
-            }, 5000);
-          }
-        });
-    </script>
+    <script src="../lecturePromise.js"></script>
   </body>
 </html>
