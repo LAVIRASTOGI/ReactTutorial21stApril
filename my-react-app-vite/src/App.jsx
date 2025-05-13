@@ -56,18 +56,52 @@ import Button from "./Button";
 // }
 
 function App() {
+  const name = "lavi";
   //react hooks -- useState, useEffect, useContext, useReducer, useRef, useMemo, useCallback, useLayoutEffect, useImperativeHandle, useDebugValue
+
+  const clickButtonHandler = (event, a1 = "lavi") => {
+    // event.stopPropagation();
+    // console.log("click handler is called", event.clientX, event.clientY);
+    // console.log("click handler is called", event?.clientX, event?.clientY);
+    // console.log("second para is called", a1);
+    console.log("clicked", event?.target.id);
+  };
+
+  const clickButtonHandler2 = (event, a1 = "lavi") => {
+    event.stopPropagation();
+    // console.log("click handler is called", event.clientX, event.clientY);
+    // console.log("click handler is called", event?.clientX, event?.clientY);
+    // console.log("second para is called", a1);
+    console.log("click h1", event?.target.id);
+  };
+
+  const clickButtonHandler3 = (event, a1 = "lavi") => {
+    //event.stopPropagation();
+    // console.log("click handler is called", event.clientX, event.clientY);
+    // console.log("click handler is called", event?.clientX, event?.clientY);
+    // console.log("second para is called", a1);
+    console.log("clicked div", event?.target.id);
+  };
+
+  const changeHandler = (e) => {
+    console.log(e.target.value);
+  };
   return (
-    <div>
+    <div
+      // onMouseMove={clickButtonHandler}
+      onClick={clickButtonHandler3}
+      style={{ background: "red", height: "100vh" }}
+      id="divClick"
+    >
       <h1>Hello World</h1>
       {/* heading is a  child component */}
       {/* props */}
-      <Heading
+      {/* <Heading
         name="Lavi"
         age={32}
         flag={true}
         obj={{ name: "Lavi", age: 32 }}
-        arr={["Lavi", "yashu", "niteesh"]}
+        arr={["Lavi", "yashu", "chhavi", { name: "jj" }]}
         clickHandler={() => {
           console.log("hello");
         }}
@@ -81,9 +115,43 @@ function App() {
         clickHandler={() => {
           console.log("hello");
         }}
+      /> */}
+      <h1>{name}</h1>
+      <button
+        onClick={(event) => {
+          // event.preventDefault();
+          // event.stopPropagation();
+          clickButtonHandler(event);
+          console.log("i am clicked", event);
+        }}
+        // onMouseMove={clickButtonHandler}
+      >
+        Click me 2
+      </button>
+      <h1 onClick={clickButtonHandler2} id="h1click">
+        <button onClick={clickButtonHandler} id="buttonClick">
+          Click me with parent
+        </button>
+      </h1>
+
+      <input
+        type="text"
+        placeholder="enter name"
+        onChange={changeHandler}
+        onBlur={(e) => {
+          console.log("blured", e.target.value);
+        }}
+      />
+      <Button name="chhavi" age={52} onClickHandler={clickButtonHandler} />
+      <Button
+        name="yashu"
+        age={32}
+        onClickHandler={(event, a11) => {
+          clickButtonHandler(event, a11);
+          console.log("lavi ur seconf button");
+        }}
       />
 
-      <Button name="chhavi" age={52} />
       {/* <div>
       <h1>Hello World from heading</h1>
       <h2> hello </h2>

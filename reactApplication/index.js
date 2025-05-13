@@ -4,7 +4,7 @@ const headingElement = React.createElement(
     id: "headingId",
   },
   React.createElement("h1", {}, [
-    React.createElement("h1", {}, "This is a span"),
+    React.createElement("h1", {}, true),
     React.createElement("h2", {}, "This is a span"),
     React.createElement("h3", {}, "This is a span"),
     React.createElement("h4", {}, "This is a span"),
