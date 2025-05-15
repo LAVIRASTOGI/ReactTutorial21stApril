@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Heading from "./Heading";
 import Button from "./Button";
+import List from "./List";
 // class App extends React.Component {
 //   constructor(props) {
 //     console.log("constructor");
@@ -56,7 +57,11 @@ import Button from "./Button";
 // }
 
 function App() {
-  const name = "lavi";
+  // const name = "lavi";
+
+  const [name, setName] = useState("lavi");
+  const [age, setAge] = useState(31);
+  const [nameArr, setNameArr] = useState(["lavi", "niteesh", "abhijet"]);
   //react hooks -- useState, useEffect, useContext, useReducer, useRef, useMemo, useCallback, useLayoutEffect, useImperativeHandle, useDebugValue
 
   const clickButtonHandler = (event, a1 = "lavi") => {
@@ -65,8 +70,12 @@ function App() {
     // console.log("click handler is called", event?.clientX, event?.clientY);
     // console.log("second para is called", a1);
     console.log("clicked", event?.target.id);
+    setAge(age + 1);
   };
 
+  const clickArrHndler = () => {
+    setNameArr([...nameArr, "yashu", "chhavi"]);
+  };
   const clickButtonHandler2 = (event, a1 = "lavi") => {
     event.stopPropagation();
     // console.log("click handler is called", event.clientX, event.clientY);
@@ -93,20 +102,20 @@ function App() {
       style={{ background: "red", height: "100vh" }}
       id="divClick"
     >
-      <h1>Hello World</h1>
+      {/* <h1>Hello World</h1> */}
       {/* heading is a  child component */}
       {/* props */}
+      <List nameArr={nameArr} clickArrHndler={clickArrHndler} />
       {/* <Heading
         name="Lavi"
-        age={32}
+        age={age}
         flag={true}
         obj={{ name: "Lavi", age: 32 }}
         arr={["Lavi", "yashu", "chhavi", { name: "jj" }]}
-        clickHandler={() => {
-          console.log("hello");
-        }}
-      />
-      <Heading
+        clickHandler={clickButtonHandler}
+      /> */}
+
+      {/* <Heading
         name="yashu"
         age={31}
         flag={true}
@@ -116,7 +125,7 @@ function App() {
           console.log("hello");
         }}
       /> */}
-      <h1>{name}</h1>
+      {/* <h1>{name}</h1>
       <button
         onClick={(event) => {
           // event.preventDefault();
@@ -141,17 +150,17 @@ function App() {
         onBlur={(e) => {
           console.log("blured", e.target.value);
         }}
-      />
-      <Button name="chhavi" age={52} onClickHandler={clickButtonHandler} />
-      <Button
+      /> */}
+      <hr />
+      <Button name={name} age={age} onClickHandler={clickButtonHandler} />
+      {/* <Button
         name="yashu"
         age={32}
         onClickHandler={(event, a11) => {
           clickButtonHandler(event, a11);
           console.log("lavi ur seconf button");
         }}
-      />
-
+      /> */}
       {/* <div>
       <h1>Hello World from heading</h1>
       <h2> hello </h2>
