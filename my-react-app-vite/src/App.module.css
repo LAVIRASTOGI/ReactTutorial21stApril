@@ -1,0 +1,48 @@
+.button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: green;
+  color: #000;
+}
+
+:global(.text-center) {
+  text-align: center;
+  color: red;
+}
+
+:root {
+  --bg-color: #fff;
+  --text-color: #000;
+}
+
+.button {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+/* 
+.primary {
+  background-color: purple;
+  color: #fff;
+  font-size: 50px;
+}
+
+.secondary {
+  background-color: orange;
+  color: #fff;
+  font-size: 50px;
+} */
+
+.primary {
+  color: green;
+}
+
+.secondary {
+  color: red;
+}

@@ -1,5 +1,9 @@
 import React from "react";
 
+// import styles from "./Button.module.css";
+// import "./App.css";
+import styles from "./App.module.css";
+
 function Button({ name, age, onClickHandler }) {
   const clickHandler = (event) => {
     // do some work
@@ -9,7 +13,7 @@ function Button({ name, age, onClickHandler }) {
     // onClickHandler(event);
   };
   return (
-    <button onClick={clickHandler}>
+    <button onClick={clickHandler} className={styles.button}>
       Click me {name} {age}
     </button>
   );

@@ -1,10 +1,11 @@
 import React from "react";
-
+import styles from "./App.module.css";
 function List({ nameArr, clickArrHndler }) {
   return (
     <div>
       {/* ["lavi", "niteesh", "abhijet"]*/}
-      <h1>{nameArr.join("_")}</h1>
+      {/* scoped globally */}
+      <h1 className="text-center">{nameArr.join("_")}</h1>
       <ul>
         {/* <li>{nameArr[0]}</li>
         <li>{nameArr[1]}</li>
@@ -14,7 +15,10 @@ function List({ nameArr, clickArrHndler }) {
         })}
         {/* [<li>{ele}</li>,<li>{ele}</li>,<li>{ele}</li>] */}
       </ul>
-      <button onClick={clickArrHndler}>Fetch List</button>
+      {/* scoped locally */}
+      <button onClick={clickArrHndler} className={styles.button}>
+        Fetch List
+      </button>
     </div>
   );
 }

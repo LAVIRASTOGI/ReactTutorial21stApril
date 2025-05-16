@@ -1,10 +1,11 @@
-import logo from "./logo.svg";
-import "./App.css";
-
-function App() {
+import React from "react";
+// import "./Styling1.css";
+import styles from "./Styling.module.css";
+function Styling1() {
+  // semantic html
   return (
-    <div>
-      <header className="styling1Header">
+    <div className={styles.styling1Header}>
+      <header className={styles.header}>
         <h1> external CSS </h1>
         <nav>
           <ul className="nav">
@@ -27,10 +28,20 @@ function App() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
           quos.
         </p>
-        <button className="button">Click from styling</button>
+        <button
+          className={styles.button}
+          //   style={{
+          //     backgroundColor: "green",
+          //     color: "white",
+          //     padding: "10px",
+          //     borderRadius: "5px",
+          //   }}
+        >
+          Click from styling
+        </button>
       </main>
     </div>
   );
 }
 
-export default App;
+export default Styling1;

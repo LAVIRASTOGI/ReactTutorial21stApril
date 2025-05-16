@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import Heading from "./Heading";
 import Button from "./Button";
 import List from "./List";
+// import "./App.css";
+import Styling1 from "./Styling1";
+import clsx from "clsx";
+
+import styles from "./App.module.css";
+
 // class App extends React.Component {
 //   constructor(props) {
 //     console.log("constructor");
@@ -55,7 +61,8 @@ import List from "./List";
 //     );
 //   }
 // }
-
+// import styles from "./App.module.css";
+// import Styling1 from "./Styling1";
 function App() {
   // const name = "lavi";
 
@@ -95,17 +102,33 @@ function App() {
   const changeHandler = (e) => {
     console.log(e.target.value);
   };
+  const isPrimary = true;
   return (
     <div
       // onMouseMove={clickButtonHandler}
       onClick={clickButtonHandler3}
-      style={{ background: "red", height: "100vh" }}
+      // style={{ background: "red", height: "100vh" }}
       id="divClick"
     >
-      {/* <h1>Hello World</h1> */}
+      <h1
+        // className={`text-centre heading ${
+        //   isPrimary ? styles.primary : styles.secondary
+        // }
+
+        //   `}
+        className={clsx(
+          "text-center",
+          isPrimary ? styles.primary : styles.secondary,
+          "button"
+        )}
+      >
+        Hello {isPrimary ? "Primary" : "Secondary"}
+      </h1>
+      <Styling1 />
+      <button className={styles.button}>Click me</button>
       {/* heading is a  child component */}
       {/* props */}
-      <List nameArr={nameArr} clickArrHndler={clickArrHndler} />
+      {/* <List nameArr={nameArr} clickArrHndler={clickArrHndler} /> */}
       {/* <Heading
         name="Lavi"
         age={age}
@@ -114,7 +137,6 @@ function App() {
         arr={["Lavi", "yashu", "chhavi", { name: "jj" }]}
         clickHandler={clickButtonHandler}
       /> */}
-
       {/* <Heading
         name="yashu"
         age={31}

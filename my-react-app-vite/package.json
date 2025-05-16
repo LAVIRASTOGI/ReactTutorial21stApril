@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.7",
+    "clsx": "^2.1.1",
+    "clx": "^1.0.0",
     "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
