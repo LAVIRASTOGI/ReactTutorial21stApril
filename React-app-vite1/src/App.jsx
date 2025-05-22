@@ -7,11 +7,21 @@ function App() {
     <div>
       <h1> count is {count}</h1>
       <button onClick={() => setCount((count) => count + 1)}>Increment</button>
+      <InputComp />
+      {new Array(3).fill(0).map((_, index) => (
+        <div key={index}>
+          <h1>count is {index}</h1>
+        </div>
+      ))}
     </div>
   );
 }
 
 export default App;
+
+function InputComp() {
+  return <input type="text" />;
+}
 
 // create fiber node
 
@@ -38,7 +48,7 @@ export default App;
 //   type: 'div',
 //   child: h1Fiber,
 //   return: appFiber,
-//   effectTag: 'Placement' // newly created node
+//   effectTag: 'Placement' // newly created node / flag
 // };
 
 // h1Fiber = {
@@ -46,13 +56,31 @@ export default App;
 //   type: 'h1',
 //   sibling: buttonFiber,
 //   return: divFiber,
-//   effectTag: 'Placement'
+//   effectTag: 'Placement' // update
+//flag: true;
 // };
 
 // buttonFiber = {
 //   tag: HostComponent,
 //   type: 'button',
-//   sibling: null,
+//   sibling: inputFibre,
 //   return: divFiber,
+//   effectTag: 'Placement'
+// };
+
+// inputFibreComp = {
+//   tag: FunctionComponent,
+//   type: 'InputComp',
+// sibling: null,
+//   return: divFiber,
+//   child: inputFibre2,
+//   effectTag: 'Placement'
+// };
+
+// inputFibre = {
+//   tag: HostComponent,
+//   type: 'input',
+//   sibling: null,
+//   return: inputFibreComp ,
 //   effectTag: 'Placement'
 // };
