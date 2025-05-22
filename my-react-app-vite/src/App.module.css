@@ -12,10 +12,10 @@
   color: #000;
 }
 
-:global(.text-center) {
+/* :global(.text-center) {
   text-align: center;
   color: red;
-}
+} */
 
 :root {
   --bg-color: #fff;

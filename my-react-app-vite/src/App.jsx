@@ -7,6 +7,7 @@ import Styling1 from "./Styling1";
 import clsx from "clsx";
 
 import styles from "./App.module.css";
+import TailwindCssComponent from "./TailwindCssComponent";
 
 // class App extends React.Component {
 //   constructor(props) {
@@ -109,8 +110,9 @@ function App() {
       onClick={clickButtonHandler3}
       // style={{ background: "red", height: "100vh" }}
       id="divClick"
+      // data-theme="dark"
     >
-      <h1
+      {/* <h1
         // className={`text-centre heading ${
         //   isPrimary ? styles.primary : styles.secondary
         // }
@@ -123,9 +125,9 @@ function App() {
         )}
       >
         Hello {isPrimary ? "Primary" : "Secondary"}
-      </h1>
-      <Styling1 />
-      <button className={styles.button}>Click me</button>
+      </h1> */}
+      {/* <Styling1 />
+      <button className={styles.button}>Click me</button> */}
       {/* heading is a  child component */}
       {/* props */}
       {/* <List nameArr={nameArr} clickArrHndler={clickArrHndler} /> */}
@@ -173,8 +175,8 @@ function App() {
           console.log("blured", e.target.value);
         }}
       /> */}
-      <hr />
-      <Button name={name} age={age} onClickHandler={clickButtonHandler} />
+      {/* <hr />
+      <Button name={name} age={age} onClickHandler={clickButtonHandler} /> */}
       {/* <Button
         name="yashu"
         age={32}
@@ -190,6 +192,9 @@ function App() {
         <p>this is a paragraph</p>
       </div>
     </div> */}
+
+      {/* tailwind CSS */}
+      <TailwindCssComponent />
     </div>
   );
 }
