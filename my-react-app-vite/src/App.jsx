@@ -8,6 +8,7 @@ import clsx from "clsx";
 
 import styles from "./App.module.css";
 import TailwindCssComponent from "./TailwindCssComponent";
+import UseStateExample1 from "./Hooks/useStateExample1";
 
 // class App extends React.Component {
 //   constructor(props) {
@@ -70,6 +71,7 @@ function App() {
   const [name, setName] = useState("lavi");
   const [age, setAge] = useState(31);
   const [nameArr, setNameArr] = useState(["lavi", "niteesh", "abhijet"]);
+  const [obj, setObj] = useState({ name: "chhavi" });
   //react hooks -- useState, useEffect, useContext, useReducer, useRef, useMemo, useCallback, useLayoutEffect, useImperativeHandle, useDebugValue
 
   const clickButtonHandler = (event, a1 = "lavi") => {
@@ -100,6 +102,7 @@ function App() {
     console.log("clicked div", event?.target.id);
   };
 
+  // 12
   const changeHandler = (e) => {
     console.log(e.target.value);
   };
@@ -192,9 +195,34 @@ function App() {
         <p>this is a paragraph</p>
       </div>
     </div> */}
+        {/* <h1>{name}</h1>
+        <h1>{obj.name}</h1>
+        <h1>{nameArr}</h1> */}
+      <button
+        onClick={() => {
+          setName("yashu");
+          // obj.name = "yashu777";
+          // setObj({
+          //   ...obj,
+          //   name: "yashu777",
+          // });
+          // nameArr.push("lll");
 
+          //  setNameArr([...nameArr, "lllll"]);
+        }}
+      >
+        Click Me
+      </button>
       {/* tailwind CSS */}
-      <TailwindCssComponent />
+      {/* <TailwindCssComponent
+        obj={obj}
+        nameArr={nameArr}
+        // 12 89
+        changeHandler={changeHandler}
+      /> */}
+
+      {/* useState */}
+      <UseStateExample1 />
     </div>
   );
 }

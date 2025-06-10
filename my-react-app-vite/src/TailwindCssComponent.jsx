@@ -1,7 +1,8 @@
 import React from "react";
 import images2 from "./assets/images2.jpeg";
 
-function TailwindCssComponent() {
+const TailwindCssComponent = React.memo(({ obj }) => {
+  console.log("are u rerendering");
   return (
     <>
       <h1
@@ -9,7 +10,7 @@ function TailwindCssComponent() {
       //     dark:text-green-500
       //   uppercase bg-orange-200"
       >
-        Hello world!
+        Hello world! {obj.name}
       </h1>
       <div className="flex flex-row justify-center items-center gap-3.5 my-5">
         <div className="card">
@@ -47,6 +48,6 @@ function TailwindCssComponent() {
       </div>
     </>
   );
-}
+});
 
 export default TailwindCssComponent;
