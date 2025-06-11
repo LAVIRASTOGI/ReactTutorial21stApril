@@ -1,18 +1,20 @@
 import { useState } from "react";
+import UseEffectExample1 from "./Hooks/UseEffectExample1";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <h1> count is {count}</h1>
+      {/* <h1> count is {count}</h1>
       <button onClick={() => setCount((count) => count + 1)}>Increment</button>
       <InputComp />
       {new Array(3).fill(0).map((_, index) => (
         <div key={index}>
           <h1>count is {index}</h1>
         </div>
-      ))}
+      ))} */}
+      <UseEffectExample1 />
     </div>
   );
 }
