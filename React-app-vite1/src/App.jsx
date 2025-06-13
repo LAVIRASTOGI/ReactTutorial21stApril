@@ -1,8 +1,9 @@
 import { useState } from "react";
-import UseEffectExample1 from "./Hooks/UseEffectExample1";
+import UseLayoutEffectExample1 from "./Hooks/UseLayoutEffectExample1";
+import UseReducerEample1 from "./Hooks/UseReducerEample1";
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   return (
     <div>
@@ -14,7 +15,9 @@ function App() {
           <h1>count is {index}</h1>
         </div>
       ))} */}
-      <UseEffectExample1 />
+      {/* <UseEffectExample1 /> */}
+      {/* <UseLayoutEffectExample1 /> */}
+      <UseReducerEample1 />
     </div>
   );
 }
