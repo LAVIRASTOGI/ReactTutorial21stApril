@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import UseLayoutEffectExample1 from "./Hooks/UseLayoutEffectExample1";
 import UseReducerEample1 from "./Hooks/UseReducerEample1";
+import UseRefExample1 from "./Hooks/UseRefExample1";
+import UseRefExample2 from "./Hooks/UseRefExample2";
+import ContextExample1 from "./Hooks/ContextExample1";
+import { UserProvider } from "./Context/UserContext";
+import { ThemeContext } from "./Context/ThemeContext";
 
 function App() {
   // const [count, setCount] = useState(0);
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <div>
-      {/* <h1> count is {count}</h1>
+    <>
+      <div className={theme}>
+        {/* <h1> count is {count}</h1>
       <button onClick={() => setCount((count) => count + 1)}>Increment</button>
       <InputComp />
       {new Array(3).fill(0).map((_, index) => (
@@ -15,10 +22,18 @@ function App() {
           <h1>count is {index}</h1>
         </div>
       ))} */}
-      {/* <UseEffectExample1 /> */}
-      {/* <UseLayoutEffectExample1 /> */}
-      <UseReducerEample1 />
-    </div>
+        {/* <UseEffectExample1 /> */}
+        {/* <UseLayoutEffectExample1 /> */}
+        {/* <UseReducerEample1 /> */}
+
+        {/* <UseRefExample1 /> */}
+        <UseRefExample2 />
+
+        <UserProvider>
+          <ContextExample1 />
+        </UserProvider>
+      </div>
+    </>
   );
 }
 
