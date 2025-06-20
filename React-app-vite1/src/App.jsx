@@ -6,6 +6,8 @@ import UseRefExample2 from "./Hooks/UseRefExample2";
 import ContextExample1 from "./Hooks/ContextExample1";
 import { UserProvider } from "./Context/UserContext";
 import { ThemeContext } from "./Context/ThemeContext";
+import UserData from "./CustomHooks/UserData";
+import PostData from "./CustomHooks/PostData";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -29,9 +31,12 @@ function App() {
         {/* <UseRefExample1 /> */}
         <UseRefExample2 />
 
-        <UserProvider>
+        {/* <UserProvider>
           <ContextExample1 />
-        </UserProvider>
+        </UserProvider> */}
+        {/* custom Hook */}
+        <UserData />
+        <PostData />
       </div>
     </>
   );
