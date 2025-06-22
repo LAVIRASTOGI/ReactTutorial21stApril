@@ -8,6 +8,7 @@ import { UserProvider } from "./Context/UserContext";
 import { ThemeContext } from "./Context/ThemeContext";
 import UserData from "./CustomHooks/UserData";
 import PostData from "./CustomHooks/PostData";
+import UseCallbackHookExample from "./CallBackMemoHooks/UseCallbackHookExample";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -29,14 +30,17 @@ function App() {
         {/* <UseReducerEample1 /> */}
 
         {/* <UseRefExample1 /> */}
-        <UseRefExample2 />
+        {/* <UseRefExample2 /> */}
 
         {/* <UserProvider>
           <ContextExample1 />
         </UserProvider> */}
         {/* custom Hook */}
-        <UserData />
-        <PostData />
+        {/* <UserData /> */}
+        {/* <PostData /> */}
+
+        {/* use Callback */}
+        <UseCallbackHookExample />
       </div>
     </>
   );
