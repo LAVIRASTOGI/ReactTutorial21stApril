@@ -9,6 +9,8 @@ import { ThemeContext } from "./Context/ThemeContext";
 import UserData from "./CustomHooks/UserData";
 import PostData from "./CustomHooks/PostData";
 import UseCallbackHookExample from "./CallBackMemoHooks/UseCallbackHookExample";
+import MemoExample1 from "./MemoHookExamples/MemoExample1";
+import TodoApp from "./ReactExamples/TodoApp";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -16,8 +18,8 @@ function App() {
 
   return (
     <>
-      <div className={theme}>
-        {/* <h1> count is {count}</h1>
+      {/* <div className={theme}> */}
+      {/* <h1> count is {count}</h1>
       <button onClick={() => setCount((count) => count + 1)}>Increment</button>
       <InputComp />
       {new Array(3).fill(0).map((_, index) => (
@@ -25,32 +27,33 @@ function App() {
           <h1>count is {index}</h1>
         </div>
       ))} */}
-        {/* <UseEffectExample1 /> */}
-        {/* <UseLayoutEffectExample1 /> */}
-        {/* <UseReducerEample1 /> */}
+      {/* <UseEffectExample1 /> */}
+      {/* <UseLayoutEffectExample1 /> */}
+      {/* <UseReducerEample1 /> */}
 
-        {/* <UseRefExample1 /> */}
-        {/* <UseRefExample2 /> */}
+      {/* <UseRefExample1 /> */}
+      {/* <UseRefExample2 /> */}
 
-        {/* <UserProvider>
+      {/* <UserProvider>
           <ContextExample1 />
         </UserProvider> */}
-        {/* custom Hook */}
-        {/* <UserData /> */}
-        {/* <PostData /> */}
+      {/* custom Hook */}
+      {/* <UserData /> */}
+      {/* <PostData /> */}
 
-        {/* use Callback */}
-        <UseCallbackHookExample />
-      </div>
+      {/* use Callback */}
+      {/* <UseCallbackHookExample /> */}
+
+      {/* use memo  */}
+
+      {/* <MemoExample1 /> */}
+      <TodoApp />
+      {/* </div> */}
     </>
   );
 }
 
 export default App;
-
-function InputComp() {
-  return <input type="text" />;
-}
 
 // create fiber node
 

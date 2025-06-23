@@ -1,11 +1,12 @@
 import React from "react";
+import { useThrotlling } from "./useThrotlling";
 
 const CounterValue = React.memo(({ count, incrementHandler }) => {
-  console.log("counter runs");
+  const throttleIncrementHandler = useThrotlling(incrementHandler, 3000);
   return (
     <>
       <h1>{count}</h1>
-      <button onClick={incrementHandler}>Increment</button>
+      <button onClick={throttleIncrementHandler}>Increment</button>
     </>
   );
 });

@@ -3,6 +3,7 @@ import InputComponentValue from "./InputComponentValue";
 import CounterValue from "./CounterValue";
 import { useCallback } from "react";
 import UserDataValue from "./UserDataValue";
+import ResizeWindow from "./ResizeWindow";
 
 function UseCallbackHookExample() {
   const [searchValue, setSearchValue] = useState([]);
@@ -21,12 +22,14 @@ function UseCallbackHookExample() {
   return (
     <>
       <h1> Giving Example for UseCalback</h1>
+      <ResizeWindow/>
       <InputComponentValue
         searchValue={searchValue}
         changeHandler={changeHandler}
       />
       <CounterValue count={count} incrementHandler={incrementHandler} />
       <UserDataValue />
+      
     </>
   );
 }
