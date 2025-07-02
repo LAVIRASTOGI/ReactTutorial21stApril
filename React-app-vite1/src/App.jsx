@@ -1,20 +1,32 @@
-import { useContext, useState } from "react";
-import UseLayoutEffectExample1 from "./Hooks/UseLayoutEffectExample1";
-import UseReducerEample1 from "./Hooks/UseReducerEample1";
-import UseRefExample1 from "./Hooks/UseRefExample1";
-import UseRefExample2 from "./Hooks/UseRefExample2";
-import ContextExample1 from "./Hooks/ContextExample1";
+// import { useContext, useState } from "react";
+// import UseLayoutEffectExample1 from "./Hooks/UseLayoutEffectExample1";
+// import UseReducerEample1 from "./Hooks/UseReducerEample1";
+// import UseRefExample1 from "./Hooks/UseRefExample1";
+// import UseRefExample2 from "./Hooks/UseRefExample2";
+// import ContextExample1 from "./Hooks/ContextExample1";
+// import { UserProvider } from "./Context/UserContext";
+// import { ThemeContext } from "./Context/ThemeContext";
+// import UserData from "./CustomHooks/UserData";
+// import PostData from "./CustomHooks/PostData";
+// import UseCallbackHookExample from "./CallBackMemoHooks/UseCallbackHookExample";
+// import MemoExample1 from "./MemoHookExamples/MemoExample1";
+// import TodoApp from "./ReactExamples/TodoApp";
+
+import { Route, Routes } from "react-router-dom";
+import Home from "./Routing Example/Home";
+import Courses from "./Routing Example/Courses";
+import MockInterview from "./Routing Example/MockInterview";
+import NavBar from "./Routing Example/NavBar";
+import CoursesDetails from "./Routing Example/CoursesDetails";
+import CoursesFeedback from "./Routing Example/CoursesFeedback";
+import CoursesView from "./Routing Example/CoursesView";
 import { UserProvider } from "./Context/UserContext";
-import { ThemeContext } from "./Context/ThemeContext";
-import UserData from "./CustomHooks/UserData";
-import PostData from "./CustomHooks/PostData";
-import UseCallbackHookExample from "./CallBackMemoHooks/UseCallbackHookExample";
-import MemoExample1 from "./MemoHookExamples/MemoExample1";
-import TodoApp from "./ReactExamples/TodoApp";
+import ProtectedRoute from "./Routing Example/ProtectedRoute";
+import Login from "./Routing Example/Login";
 
 function App() {
   // const [count, setCount] = useState(0);
-  const { theme } = useContext(ThemeContext);
+  // const { theme } = useContext(ThemeContext);
 
   return (
     <>
@@ -47,8 +59,31 @@ function App() {
       {/* use memo  */}
 
       {/* <MemoExample1 /> */}
-      <TodoApp />
+      {/* <TodoApp /> */}
       {/* </div> */}
+      <UserProvider>
+        <NavBar />
+
+        <Routes>
+          <Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+
+            {/* <Route path="courses" element={<Courses isloggedIn={true} />}> */}
+            <Route element={<ProtectedRoute />}>
+              <Route path="courses">
+                <Route index element={<CoursesView />} />
+                <Route path=":courseId" element={<CoursesDetails />} />
+                <Route path="feedback" element={<CoursesFeedback />} />
+              </Route>
+              <Route path="mock" element={<MockInterview />} />
+            </Route>
+
+            {/* <Route path="courses/courseId" element={<CoursesDetails />} />
+        <Route path="courses/feedback" element={<CoursesFeedback />} /> */}
+          </Route>
+        </Routes>
+      </UserProvider>
     </>
   );
 }
