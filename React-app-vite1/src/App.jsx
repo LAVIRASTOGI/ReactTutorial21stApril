@@ -15,14 +15,17 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./Routing Example/Home";
 import Courses from "./Routing Example/Courses";
-import MockInterview from "./Routing Example/MockInterview";
 import NavBar from "./Routing Example/NavBar";
-import CoursesDetails from "./Routing Example/CoursesDetails";
-import CoursesFeedback from "./Routing Example/CoursesFeedback";
-import CoursesView from "./Routing Example/CoursesView";
 import { UserProvider } from "./Context/UserContext";
 import ProtectedRoute from "./Routing Example/ProtectedRoute";
-import Login from "./Routing Example/Login";
+
+import { lazy, Suspense } from "react";
+
+const MockInterview = lazy(() => import("./Routing Example/MockInterview"));
+const CoursesDetails = lazy(() => import("./Routing Example/CoursesDetails"));
+const CoursesFeedback = lazy(() => import("./Routing Example/CoursesFeedback"));
+const CoursesView = lazy(() => import("./Routing Example/CoursesView"));
+const Login = lazy(() => import("./Routing Example/Login"));
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -76,7 +79,14 @@ function App() {
                 <Route path=":courseId" element={<CoursesDetails />} />
                 <Route path="feedback" element={<CoursesFeedback />} />
               </Route>
-              <Route path="mock" element={<MockInterview />} />
+              <Route
+                path="mock"
+                element={
+                  <Suspense fallback={<h1>Loading.....</h1>}>
+                    <MockInterview />
+                  </Suspense>
+                }
+              />
             </Route>
 
             {/* <Route path="courses/courseId" element={<CoursesDetails />} />

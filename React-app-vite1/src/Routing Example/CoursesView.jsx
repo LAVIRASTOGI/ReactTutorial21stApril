@@ -1,7 +1,16 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { NavLink, useSearchParams } from "react-router-dom";
 
 function CoursesView() {
+  const [paramsVal, setParamsVal] = useSearchParams();
+  console.log(
+    paramsVal,
+    paramsVal.get("courseDetailVal"),
+    paramsVal.get("name1")
+  );
+  // useEffect(() => {
+  //   setParamsVal({ courseDetailVal: "lavi" });
+  // }, []);
   return (
     <>
       <NavLink to="course1">Course 1</NavLink>

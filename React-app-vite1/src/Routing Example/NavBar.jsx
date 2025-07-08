@@ -11,8 +11,12 @@ function NavBar() {
       <NavLink to="/">Home</NavLink>
       {isUser ? (
         <>
-          <NavLink to="/courses">Courses</NavLink>
-          <NavLink to="/mock">Mock</NavLink>
+          <NavLink to="/courses?courseDetailVal=xyz&name1=erere">
+            Courses
+          </NavLink>
+          <NavLink to="/mock" state={{ pathData: "ddddddddddd" }}>
+            Mock
+          </NavLink>
         </>
       ) : (
         ""
