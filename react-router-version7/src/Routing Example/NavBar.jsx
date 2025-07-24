@@ -13,7 +13,7 @@ function NavBar() {
     return (
       <div className="loading-spinner">
         <div className="spinner"></div>
-        <p>Loading...</p>
+        <p>Loading data...</p>
       </div>
     );
   }
