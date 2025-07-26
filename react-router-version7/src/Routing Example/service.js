@@ -8,11 +8,11 @@ function fetchPosts() {
 }
 
 export const postsFetch = async () => {
- // let posts = await fetchPosts();
+  // let posts = await fetchPosts();
   // ← no await, just return a promise
   return {
-  //  posts,
-     posts: fetchPosts(),
+    //  posts,
+    posts: fetchPosts(),
   };
 };
 
@@ -25,30 +25,19 @@ export async function contactAction({ request }) {
     const data = Object.fromEntries(formData);
     console.log(data);
     // console.log(formData);
-    // console.log(formData.get("name"));
-    // console.log(formData.get("email"));
-    // console.log(formData.get("message"));
+    console.log(formData.get("name"));
+
+    console.log(formData.get("message"));
 
     // Validate form data
-    if (!data.name || !data.email || !data.message) {
+    if (!data.name || !data.message) {
       return {
         error: "Please fill in all fields",
       };
     }
 
     // Simulate API call with a delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Simulate random API errors (1 in 10 chance)
-    if (Math.random() < 0.1) {
-      throw new Response(
-        JSON.stringify({ message: "Server is temporarily unavailable" }),
-        {
-          status: 503,
-          statusText: "Service Unavailable",
-        }
-      );
-    }
+    await new Promise((resolve) => setTimeout(resolve, 7000));
 
     // In a real app, you would send the data to a server
     console.log("Form submitted with data:", data);

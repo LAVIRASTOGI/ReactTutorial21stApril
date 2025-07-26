@@ -23,6 +23,7 @@ function NavBar() {
       <NavLink to="/">Home</NavLink>
       <NavLink to="/about">AboutUs</NavLink>
       <NavLink to="/contact">Contact</NavLink>
+      <NavLink to="/feedback">FeedBack</NavLink>
       <br />
       <NavLink to="/users">Users</NavLink>
 
