@@ -12,9 +12,10 @@ import CoursesView from "./Routing Example/CoursesView";
 import CoursesDetails from "./Routing Example/CoursesDetails";
 import CoursesFeedback from "./Routing Example/CoursesFeedback";
 import ErrorData from "./Routing Example/ErrorData";
-import { postsFetch } from "./Routing Example/service";
+import { contactAction, postsFetch } from "./Routing Example/service";
 import Loading from "./Routing Example/Loading";
 import { UserProvider } from "./UserContext";
+import Contact from "./Routing Example/Contact";
 
 const routes = [
   {
@@ -28,6 +29,12 @@ const routes = [
         path: "users",
         element: <Users />,
         loader: postsFetch,
+        // loader: ({ params }) => postsFetch(params.id),
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+        // action:contactAction
       },
       {
         path: "courses",

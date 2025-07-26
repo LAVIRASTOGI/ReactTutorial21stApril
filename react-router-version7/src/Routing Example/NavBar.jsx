@@ -22,6 +22,7 @@ function NavBar() {
     <div>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/about">AboutUs</NavLink>
+      <NavLink to="/contact">Contact</NavLink>
       <br />
       <NavLink to="/users">Users</NavLink>
 
