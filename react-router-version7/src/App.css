@@ -63,3 +63,9 @@
     transform: rotate(360deg);
   }
 }
+
+.redError {
+  border: 1px red solid;
+  background: red;
+  color: white;
+}

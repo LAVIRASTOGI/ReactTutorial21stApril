@@ -24,6 +24,7 @@ function NavBar() {
       <NavLink to="/about">AboutUs</NavLink>
       <NavLink to="/contact">Contact</NavLink>
       <NavLink to="/feedback">FeedBack</NavLink>
+      <NavLink to="/registration">Registration</NavLink>
       <br />
       <NavLink to="/users">Users</NavLink>
 

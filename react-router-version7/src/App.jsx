@@ -17,6 +17,7 @@ import Loading from "./Routing Example/Loading";
 import { UserProvider } from "./UserContext";
 import Contact from "./Routing Example/Contact";
 import FeedBackForm from "./Routing Example/FeedbackForm";
+import Registration from "./Routing Example/Registration";
 
 const routes = [
   {
@@ -35,6 +36,11 @@ const routes = [
       {
         path: "contact",
         element: <Contact />,
+        // action:contactAction
+      },
+         {
+        path: "registration",
+        element: <Registration />,
         // action:contactAction
       },
       {
