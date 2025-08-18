@@ -22,6 +22,8 @@ function NavBar() {
     <div>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/about">AboutUs</NavLink>
+      <NavLink to="/formExample">FormExample</NavLink>
+      <NavLink to="/formExampleAction">FormExampleAction State</NavLink>
       <NavLink to="/contact">Contact</NavLink>
       <NavLink to="/feedback">FeedBack</NavLink>
       <NavLink to="/registration">Registration</NavLink>

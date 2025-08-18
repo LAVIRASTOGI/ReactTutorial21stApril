@@ -18,6 +18,8 @@ import { UserProvider } from "./UserContext";
 import Contact from "./Routing Example/Contact";
 import FeedBackForm from "./Routing Example/FeedbackForm";
 import Registration from "./Routing Example/Registration";
+import FormExample from "./Routing Example/FormExample";
+import FormExampleActionState from "./Routing Example/FormExampleActionState";
 
 const routes = [
   {
@@ -27,6 +29,8 @@ const routes = [
     children: [
       { index: true, element: <Home /> },
       { path: "about", element: <Aboutus /> },
+      { path: "formExample", element: <FormExample /> },
+      { path: "formExampleAction", element: <FormExampleActionState /> },
       {
         path: "users",
         element: <Users />,
@@ -38,7 +42,7 @@ const routes = [
         element: <Contact />,
         // action:contactAction
       },
-         {
+      {
         path: "registration",
         element: <Registration />,
         // action:contactAction
@@ -46,7 +50,7 @@ const routes = [
       {
         path: "feedback",
         element: <FeedBackForm />,
-        action:contactAction
+        action: contactAction,
       },
       {
         path: "courses",
