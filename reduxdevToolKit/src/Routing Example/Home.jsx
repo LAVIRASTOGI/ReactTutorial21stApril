@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../Redux/counterSlice";
 import { loginUser } from "../Redux/userSlice";
+import { Helmet } from "react-helmet";
 
 // using Redux
 function Home() {
@@ -16,6 +17,12 @@ function Home() {
 
   return (
     <>
+      <div>
+        <Helmet>
+          <title>My Title</title>
+          <meta name="description" content="Helmet application" />
+        </Helmet>
+      </div>
       <h1>Hi All</h1>
       <h1>{reduxStateVal?.counter?.count}</h1>
       {reduxStateVal?.user?.user?.name && (
