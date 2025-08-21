@@ -26,8 +26,8 @@ function Home() {
       <button onClick={() => dispatch(decrement())}>Decrement</button>
 
       {/* <Contact /> */}
-      <LazyLoadingExample1 />
-      {/* <LazyLoadingExample2 /> */}
+      {/* <LazyLoadingExample1 /> */}
+      <LazyLoadingExample2 />
     </>
   );
 }
